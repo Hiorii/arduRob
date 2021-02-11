@@ -19,6 +19,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(session({secret: 'hiorii' }));
 
 /* API ENDPOINTS */
+app.use('/api', require('./routes/products.routes'));
+app.use('/api', require('./routes/category.routes'));
+app.use('/api', require('./routes/subCategory.routes'));
+app.use('/api', require('./routes/user.routes'));
 
 /* API ERROR PAGES */
 app.use('/api', (req,res) => {
@@ -35,6 +39,7 @@ app.use('*', (req,res) => {
 connectToDb();
 
 /* START SERVER */
-const server = app.listen(process.env.PORT || 8000, () => {
-    console.log('Server is running...')
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+    console.log('Server is running on port: '+ port);
 });
