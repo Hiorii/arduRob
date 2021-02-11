@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const session = require('express-session');
+const mongoData = require('./envData/mongoDbData');
+const connectToDb = require('./config/db');
 
 const app = express();
 
@@ -28,6 +30,9 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('*', (req,res) => {
    res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
+/* CONNECT TO DB */
+connectToDb();
 
 /* START SERVER */
 const server = app.listen(process.env.PORT || 8000, () => {
