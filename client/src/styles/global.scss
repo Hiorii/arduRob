@@ -1,0 +1,17 @@
+@import './settings';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+
+*,*::before,*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  font-size: 1rem;
+  font-weight: 300;
+  color: $second-font;
+  background: $main-font;
+}

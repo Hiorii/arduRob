@@ -15,7 +15,7 @@ const MainLayout = ({children}) => {
     <div>
       {children}
       <h1>hello</h1>
-      {products.products.data.map((p,i)=> {
+      {products && products.data.map((p,i)=> {
         return (
           <div key={i}>
             <p>{p.name}</p>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {API_URL} from '../config';
 
 /* selectors */
-export const getAll = ({products}) => products;
+export const getAll = ({products}) => products.data;
 
 /* action name creator */
 const reducerName = 'products';
@@ -51,7 +51,7 @@ export const reducer = (statePart = initialState, action = {}) => {
           active: false,
           error: false,
         },
-        products: action.payload,
+        data: action.payload,
       };
     }
     case FETCH_ERROR: {
