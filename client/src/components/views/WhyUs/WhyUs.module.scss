@@ -1,0 +1,107 @@
+@import "../../../styles/settings";
+
+.root {
+  @include flex(center, center);
+  margin-top: 10rem;
+  .container {
+    @include flex(center,center);
+    flex-wrap: wrap;
+    .img {
+      margin-right: 10rem;
+      img {
+        height: 45rem;
+      }
+    }
+    .content {
+      width: 28rem;
+      color: $second-font;
+      margin-top: 3rem;
+      span {
+        color: $main-btn;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      h1 {
+        font-size: 3rem;
+        margin: 1rem 0;
+      }
+      p {
+        font-size: 1.4rem;
+        margin: .5rem;
+      }
+      ul {
+        list-style-position: outside;
+        li {
+          font-size: 1.2rem;
+          margin-left: 2.2rem;
+        }
+      }
+      .btn {
+        @include flex(center,center);
+      }
+    }
+    .notSure {
+      width: 100%;
+      @include flex(center,center);
+      flex-wrap: wrap;
+      margin-top: 8rem;
+      h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: $main-btn;
+      }
+      h5 {
+        font-size: 1.8rem;
+      }
+      .notSureContainer {
+        width: 100%;
+        margin: auto;
+        @include flex(center, flex-start);
+        .notSureItem {
+          @include flex(space-around, center);
+          flex-wrap: wrap;
+          margin: 5rem 5rem 5rem 0;
+          width: 20rem;
+          img {
+            height: 8rem;
+          }
+          h5 {
+            margin: 2rem 0;
+            width: 100%;
+            text-align: center;
+          }
+          p {
+            width: 100%;
+            text-align: center;
+            font-size: 1.4rem;
+            span {
+              font-weight: 800;
+              font-size: 1.6rem;
+            }
+          }
+          .extra {
+            margin-top: .5rem;
+            text-decoration: underline;
+          }
+        }
+      }
+      h5:last-of-type {
+        width: 100%;
+        text-align: center;
+      }
+      .readySolDesc {
+        margin: 3rem;
+        width: 100%;
+        @include flex(center,center);
+        p {
+          width: 20rem;
+          font-size: 1.4rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

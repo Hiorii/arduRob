@@ -4,6 +4,7 @@ $primary-light: #4594A1;
 $main-font: #ffffff;
 $second-font: #000000;
 $main-btn: #ef9f43;
+$dark-gradient: linear-gradient(270deg,#32363f 0,#000 90%);
 $color-warning: #f6b93b;
 $color-danger: #e06854;
 $color-success: #78e08f;
@@ -24,17 +25,17 @@ $small-width: 85vw;
 $full-width: 1170px;
 
 /* ANIMATION */
-$main-transition: all 0.3s linear;
+$main-transition: all 0.2s linear;
 
 /* SHADOWS */
 $light-shadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
 $dark-shadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 
 /* MIXINS */
-@mixin flex($align-items, $justify-content) {
+@mixin flex($justify-content, $align-items) {
   display: flex;
-  align-items: $align-items;
   justify-content: $justify-content;
+  align-items: $align-items;
 }
 
 @mixin center() {

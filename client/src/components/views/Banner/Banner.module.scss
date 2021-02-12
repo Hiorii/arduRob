@@ -1,0 +1,45 @@
+@import '../../../styles/settings';
+
+.root {
+  background: $primary;
+  max-height: 1280px;
+  @include flex(center,center);
+  .content {
+    width: 23rem;
+    color: white;
+    margin: 20rem 5rem 10rem;
+    span {
+      color: $main-btn;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: .5rem;
+    }
+  }
+  .images {
+    width: 40rem;
+    position: relative;
+    img {
+      position: absolute;
+      width: 30rem;
+    }
+    img:first-of-type {
+      top: -17rem;
+    }
+    img:nth-of-type(2) {
+      top: 0;
+      left: 8rem;
+    }
+    img:nth-of-type(3) {
+      top: 3rem;
+      left: -9rem;
+    }
+  }
+}

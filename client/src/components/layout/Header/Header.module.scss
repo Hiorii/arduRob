@@ -1,0 +1,93 @@
+@import "../../../styles/settings";
+
+.root {
+  position: fixed;
+  height: 7rem;
+  width: 100%;
+  background: transparent;
+  z-index: 99;
+  transition: $main-transition;
+  .container {
+    @include flex(space-between, center);
+    margin: 0 2rem 2rem 2rem;
+    .logo {
+      margin-top: 1rem;
+      @include flex(center,center);
+      img {
+        height: 5rem;
+        width: 4.5rem;
+      }
+      span {
+        font-size: 2.2rem;
+        color: $main-font;
+        margin-left: 1rem;
+      }
+    }
+    .list {
+      margin-top: 1rem;
+      a {
+        text-decoration: none;
+        color: $main-font;
+        font-size: 1.8rem;
+        margin: 0 1rem;
+      }
+    }
+    .icons {
+      margin-top: 1rem;
+      a {
+        text-decoration: none;
+        svg {
+          color: $main-font;
+          margin-right: 2rem;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
+.rootScroll {
+  position: fixed;
+  height: 7rem;
+  width: 100%;
+  background: $main-font;
+  z-index: 99;
+  transition: $main-transition;
+  .container {
+    @include flex(space-between, center);
+    margin: 0 2rem 2rem 2rem;
+    .logo {
+      margin-top: 1rem;
+      @include flex(center,center);
+      img {
+        height: 5rem;
+        width: 4.5rem;
+      }
+      span {
+        font-size: 2.2rem;
+        color: $second-font;
+        margin-left: 1rem;
+      }
+    }
+    .list {
+      margin-top: 1rem;
+      a {
+        text-decoration: none;
+        color: $second-font;
+        font-size: 1.8rem;
+        margin: 0 1rem;
+      }
+    }
+    .icons {
+      margin-top: 1rem;
+      a {
+        text-decoration: none;
+        svg {
+          color: $second-font;
+          margin-right: 2rem;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

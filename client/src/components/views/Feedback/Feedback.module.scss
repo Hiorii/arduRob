@@ -1,0 +1,54 @@
+@import '../../../styles/settings';
+
+.root {
+  background: $primary-light;
+  @include flex(center,center);
+  flex-wrap: wrap;
+  color: $main-font;
+  h1 {
+    width: 100%;
+    text-align: center;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    font-size: 2.4rem;
+  }
+  .feedback {
+    width: 100%;
+    @include flex(center,center);
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    position: relative;
+    .quote {
+      position: absolute;
+      left: 51rem;
+      height: 5rem;
+      svg {
+        font-size: 3rem;
+      }
+    }
+    .feedbackText {
+      width: 100%;
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+    }
+    .feedbackFoto {
+      img {
+        height: 6rem;
+        border-radius: 50%;
+        margin-right: 2rem;
+      }
+    }
+    .feedbackName {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+  }
+  .btn {
+    margin-bottom: 6rem;
+    a {
+      color: $main-font;
+      font-size: 1.2rem;
+    }
+  }
+}
