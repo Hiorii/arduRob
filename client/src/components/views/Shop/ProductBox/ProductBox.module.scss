@@ -1,0 +1,44 @@
+@import '../../../../styles/settings';
+
+.root {
+  background: $main-font;
+  width: 25rem;
+  .container {
+    width: 100%;
+    .photo {
+      @include flex(center,center);
+      width: 25rem;
+      height: 25rem;
+      img {
+        width: 20rem;
+        margin-bottom: 3rem;
+      }
+    }
+    .data {
+      height: 10rem;
+      @include flex(center, center);
+      flex-wrap: wrap;
+      h3 {
+        width: 100%;
+        font-size: 1.6rem;
+        margin: 1rem;
+      }
+      div {
+        @include flex(space-between, center);
+        width: 100%;
+        margin: 1rem;
+        p {
+          font-size: 1.5rem;
+          font-weight: 800;
+        }
+        svg {
+          font-size: 2rem;
+          transition: $main-transition;
+          &:hover {
+            background: $main-btn;
+          }
+        }
+      }
+    }
+  }
+}

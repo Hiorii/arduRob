@@ -3,7 +3,7 @@ import axios from 'axios';
 import {API_URL} from '../config';
 
 /* selectors */
-export const getAll = ({category}) => category.data;
+export const getAllCategory = ({category}) => category.data;
 
 /* action name creator */
 const reducerName = 'category';

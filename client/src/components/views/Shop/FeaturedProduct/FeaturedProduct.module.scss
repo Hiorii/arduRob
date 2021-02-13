@@ -1,0 +1,34 @@
+@import '../../../../styles/settings';
+
+.root {
+  position: absolute;
+  top: 48rem;
+  left: 5%;
+  width: 90%;
+  background: $primary-white;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+  .title {
+    margin: 3rem;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: $main-btn;
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+  }
+  .featureProductsContainer {
+    margin: 3rem;
+    @include flex(space-around,center);
+    flex-wrap: wrap;
+    .featureProductsContainerInner {
+      margin-bottom: 3rem;
+      a {
+        text-decoration: none;
+        color: $second-font;
+      }
+    }
+  }
+}

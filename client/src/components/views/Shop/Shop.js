@@ -2,14 +2,18 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import styles from './Shop.module.scss';
+import {getAllCategory, fetchCategory} from '../../../redux/categoryRedux';
+import {getAllProducts, fetchProducts} from '../../../redux/productRedux';
 import BannerShop from './BannerShop/BannerShop';
-import {getAll, fetchCategory} from '../../../redux/categoryRedux';
+import FeaturedProduct from './FeaturedProduct/FeaturedProduct';
 
 const Shop = () => {
-  const categories = useSelector(getAll);
+  const categories = useSelector(getAllCategory);
+  const products = useSelector(getAllProducts);
   const dispatch = useDispatch();
 
   useEffect(()=> {
+    dispatch(fetchProducts());
     dispatch(fetchCategory());
   },[]);
 
@@ -25,6 +29,7 @@ const Shop = () => {
         </div>
       </div>
       <BannerShop />
+      <FeaturedProduct products={products}/>
     </div>
   );
 };
