@@ -1,0 +1,21 @@
+@import '../../../styles/settings';
+
+.root {
+  .subMenu {
+    background: $primary-light;
+    position: fixed;
+    height: 7rem;
+    width: 100%;
+    top: 7rem;
+    @include flex(center, center);
+    .list {
+      margin-top: 1rem;
+      a {
+        text-decoration: none;
+        color: $main-font;
+        font-size: 1.8rem;
+        margin: 0 1rem;
+      }
+    }
+  }
+}

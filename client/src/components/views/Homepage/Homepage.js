@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Homepage.module.scss';
-import Banner from '../Banner/Banner';
-import Feedback from '../Feedback/Feedback';
-import WhyUs from '../WhyUs/WhyUs';
+import Banner from './Banner/Banner';
+import Feedback from './Feedback/Feedback';
+import WhyUs from './WhyUs/WhyUs';
 
 const Homepage = () => {
   return (

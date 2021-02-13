@@ -1,4 +1,4 @@
-@import "../../../styles/settings";
+@import "../../../../styles/settings";
 
 .root {
   @include flex(center, center);
@@ -58,7 +58,9 @@
       }
       .notSureContainer {
         width: 100%;
-        margin: auto;
+        margin: 1.5rem auto;
+        background: $primary-white;
+
         @include flex(center, flex-start);
         .notSureItem {
           @include flex(space-around, center);

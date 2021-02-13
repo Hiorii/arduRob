@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './WhyUs.module.scss';
-import Button from '../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 
 const WhyUs = () => {
   return (
@@ -41,7 +41,7 @@ const WhyUs = () => {
             </div>
             <div className={styles.notSureItem}>
               <img src='/images/electric.png' alt='tools'/>
-              <h5>Constructing</h5>
+              <h5>Wiring</h5>
               <p>
                 Electrical connection is your weakness?
                 Or maybe you just do not like wire?
@@ -53,7 +53,7 @@ const WhyUs = () => {
             </div>
             <div className={styles.notSureItem}>
               <img src='/images/coding.png' alt='tools'/>
-              <h5>Constructing</h5>
+              <h5>Programming</h5>
               <p>
                 If you can prepare full construction from beginning but
                 you stuck in coding zone

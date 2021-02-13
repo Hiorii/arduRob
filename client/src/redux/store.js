@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 
 import {initialState} from './initialState';
 import {reducer as productsReducer} from './productRedux';
+import {reducer as categoryReducer} from './categoryRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
+  category: categoryReducer,
 };
 
 // add blank reducers for initial state properties without reducers

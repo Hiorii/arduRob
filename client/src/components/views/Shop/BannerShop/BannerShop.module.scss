@@ -1,4 +1,4 @@
-@import '../../../styles/settings';
+@import '../../../../styles/settings';
 
 .root {
   background: $primary;
@@ -13,6 +13,7 @@
       text-transform: uppercase;
       font-size: 1.2rem;
       font-weight: 600;
+      margin-left: .5rem;
     }
     h1 {
       font-size: 3rem;
@@ -28,18 +29,9 @@
     position: relative;
     img {
       position: absolute;
-      width: 30rem;
-    }
-    img:first-of-type {
-      top: -17rem;
-    }
-    img:nth-of-type(2) {
-      top: 0;
-      left: 8rem;
-    }
-    img:nth-of-type(3) {
-      top: 3rem;
-      left: -9rem;
+      width: 45rem;
+      top: -4rem;
+      left: -6rem;
     }
   }
 }
