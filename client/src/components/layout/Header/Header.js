@@ -7,8 +7,9 @@ const Header = () => {
   const history = useHistory();
   const location = useLocation();
   const [scrollPos, setScrollPos] = useState(0);
-  const [currentURL, setCurrentURL] = useState(history.location.pathname);
-  const [activeClass, setActiveClass] = useState('');
+  const [activeShop, setActiveShop] = useState(false);
+  const [activeAbout, setActiveAbout] = useState(false);
+  const [activeContact, setActiveContact] = useState(false);
 
   const headerStyles = () => {
     setScrollPos(window.scrollY);
@@ -22,9 +23,25 @@ const Header = () => {
   },[]);
 
   useEffect(()=> {
-    setCurrentURL(history.location.pathname);
+    if(history.location.pathname === '/shop') {
+      setActiveShop(true);
+      setActiveAbout(false);
+      setActiveContact(false);
+    } else if(history.location.pathname === '/about') {
+      setActiveShop(false);
+      setActiveAbout(true);
+      setActiveContact(false);
+    } else if(history.location.pathname === '/contact') {
+      setActiveShop(false);
+      setActiveAbout(false);
+      setActiveContact(true);
+    } else {
+      setActiveShop(false);
+      setActiveAbout(false);
+      setActiveContact(false);
+    }
   },[location]);
-
+  console.log(activeShop);
   return (
     <div className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>
@@ -35,9 +52,9 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles.list}>
-          <Link to='/shop' >Shop</Link>
-          <Link to='/'>About</Link>
-          <Link to='/'>Contact</Link>
+          <Link to='/shop' className={activeShop ? styles.active : ''}>Shop</Link>
+          <Link to='/' className={activeAbout ? styles.active : ''}>About</Link>
+          <Link to='/' className={activeContact ? styles.active : ''}>Contact</Link>
         </div>
         <div className={styles.icons}>
           <Link to='/'>

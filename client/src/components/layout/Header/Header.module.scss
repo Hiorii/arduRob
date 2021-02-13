@@ -33,6 +33,13 @@
         color: $main-font;
         font-size: 1.8rem;
         margin: 0 1rem;
+        transition: $main-transition;
+        &:hover {
+          color: $main-btn;
+        }
+      }
+      .active {
+        color: $main-btn;
       }
     }
     .icons {
@@ -43,6 +50,10 @@
           color: $main-font;
           margin-right: 2rem;
           font-size: 1.8rem;
+          transition: $main-transition;
+          &:hover {
+            color: $main-btn;
+          }
         }
       }
     }
@@ -82,6 +93,13 @@
         color: $second-font;
         font-size: 1.8rem;
         margin: 0 1rem;
+        transition: $main-transition;
+        &:hover {
+          color: $main-btn;
+        }
+      }
+      .active {
+        color: $main-btn;
       }
     }
     .icons {
@@ -92,6 +110,10 @@
           color: $second-font;
           margin-right: 2rem;
           font-size: 1.8rem;
+          transition: $main-transition;
+          &:hover {
+            color: $main-btn;
+          }
         }
       }
     }
