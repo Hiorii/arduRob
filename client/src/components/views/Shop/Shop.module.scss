@@ -18,4 +18,21 @@
       }
     }
   }
+  .featuresProd {
+    margin-top: -6rem;
+    margin-left: 5%;
+  }
+  .advert {
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    padding-top: 9rem;
+    margin-top: -6rem;
+    background: $primary-light;
+    z-index: -10;
+    @include flex(center, center);
+  }
+  .productList {
+    margin: 3rem;
+  }
 }

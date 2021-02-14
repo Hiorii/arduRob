@@ -1,0 +1,21 @@
+@import '../../../../styles/settings';
+
+.root {
+  margin-top: 8rem;
+  background: $primary-white;
+  h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0;
+  }
+  p {
+    font-size: 1.3rem;
+    margin: .8rem 0;
+  }
+  .category {
+    border-bottom: 1px solid $second-font;
+    padding-bottom: 2rem;
+  }
+  .sortBy {
+
+  }
+}

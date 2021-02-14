@@ -1,0 +1,38 @@
+@import '../../../../styles/settings';
+
+.root {
+  .titleCont {
+    background: $primary;
+    height: 23rem;
+    width: 58rem;
+    margin-bottom: 8rem;
+    padding-top: 3rem;
+    @include flex(center,center);
+    flex-wrap: wrap;
+    h1 {
+      font-size: 4rem;
+      color: $main-font;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10rem;
+    }
+    p {
+      position: absolute;
+      top: 17rem;
+      left: 20.5rem;
+      font-size: 3rem;
+      color: $main-btn;
+      span {
+        font-size: 3.1rem;
+        font-weight: 600;
+      }
+    }
+  }
+  img {
+    height: 20rem;
+    position: absolute;
+    top: 5.4rem;
+    left: 65.5rem;
+  }
+}
+

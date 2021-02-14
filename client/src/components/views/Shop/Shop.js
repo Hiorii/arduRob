@@ -6,6 +6,8 @@ import {getAllCategory, fetchCategory} from '../../../redux/categoryRedux';
 import {getAllProducts, fetchProducts} from '../../../redux/productRedux';
 import BannerShop from './BannerShop/BannerShop';
 import FeaturedProduct from './FeaturedProduct/FeaturedProduct';
+import ProductList from './ProductList/ProductList';
+import Advert from './Advert/Advert';
 
 const Shop = () => {
   const categories = useSelector(getAllCategory);
@@ -29,7 +31,15 @@ const Shop = () => {
         </div>
       </div>
       <BannerShop />
-      <FeaturedProduct products={products}/>
+      <div className={styles.featuresProd}>
+        <FeaturedProduct products={products}/>
+      </div>
+      <div className={styles.advert}>
+        <Advert />
+      </div>
+      <div className={styles.productList}>
+        <ProductList categories={categories} products={products}/>
+      </div>
     </div>
   );
 };

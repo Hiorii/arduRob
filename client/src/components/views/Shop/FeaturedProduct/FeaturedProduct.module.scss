@@ -1,14 +1,12 @@
 @import '../../../../styles/settings';
 
 .root {
-  position: absolute;
-  top: 48rem;
-  left: 5%;
+  padding-top: 3rem;
   width: 90%;
   background: $primary-white;
   box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
   .title {
-    margin: 3rem;
+    margin-left: 3rem;
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;

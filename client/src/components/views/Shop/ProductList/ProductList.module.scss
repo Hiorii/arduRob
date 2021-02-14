@@ -1,0 +1,32 @@
+@import "../../../../styles/settings";
+
+.root {
+  .container {
+    @include flex(center,flex-start);
+    flex-wrap: wrap;
+    .title {
+      width: 100%;
+      h1 {
+        font-size: 4rem;
+      }
+      p {
+        margin-top: 1.5rem;
+        font-size: 1.8rem;
+        color: $main-btn;
+        font-weight: 800;
+      }
+    }
+    .filters {
+      width: 30%;
+    }
+    .productList {
+      width: 70%;
+      @include flex(center,center);
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        color: $second-font;
+      }
+    }
+  }
+}

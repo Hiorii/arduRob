@@ -23,7 +23,7 @@ const ProductBox = ({product}) => {
 };
 
 ProductBox.propTypes = {
-  product: PropTypes.array,
+  product: PropTypes.object,
 };
 
 export default ProductBox;
