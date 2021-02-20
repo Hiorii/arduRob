@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './MainLayout.module.scss';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 const MainLayout = ({children}) => {
   return (
-    <div>
+    <div className={styles.root}>
       <Header />
-      {children}
-      <Footer />
+      <div className={styles.child}>
+        {children}
+      </div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </div>
   );
 };

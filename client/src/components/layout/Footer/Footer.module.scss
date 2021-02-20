@@ -5,9 +5,7 @@
   background-color: $second-font;
   color: $main-font;
   width: 100%;
-  height: 8rem;
-  position: fixed;
-  bottom: 0;
+  height: 6rem;
   .container {
     width: 100%;
     @include flex(space-between, center);
