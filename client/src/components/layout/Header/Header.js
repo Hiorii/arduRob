@@ -59,7 +59,7 @@ const Header = () => {
           <Link to='/'>
             <BiUserCircle />
           </Link>
-          <Link to='/'>
+          <Link to='/cart'>
             <BiCartAlt />
           </Link>
         </div>

@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import styles from './ProductMain.module.scss';
+import {addToCart} from '../../../../../redux/cartRedux';
 import {BsPlus, BsArrowRightShort, BsArrowDown} from 'react-icons/bs';
 import {BiMinus, BiCheck, BiCartAlt} from 'react-icons/bi';
 import {MdKeyboardArrowRight} from 'react-icons/md';
-
 
 const ProductMain = () => {
   const history = useHistory();
   const [currentProduct, setCurrentProduct] = useState(history.location.state);
   const [isDelivery, setIsDelivery] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
+  const dispatch = useDispatch();
 
   const deliverySetter = () => {
     setIsDelivery(!isDelivery);
@@ -20,6 +22,10 @@ const ProductMain = () => {
   const descriptionSetter = () => {
     setIsDescription(!isDescription);
     setIsDelivery(false);
+  };
+
+  const addProductToCart = (currentProduct) => {
+    dispatch(addToCart(currentProduct));
   };
 
   return (
@@ -110,7 +116,7 @@ const ProductMain = () => {
               </div>
             </div>
             <div className={styles.btnContainer}>
-              <button type='submit'> <BiCartAlt/> Add to cart</button>
+              <button onClick={()=>addProductToCart(currentProduct)}> <BiCartAlt/> Add to cart</button>
             </div>
           </div>
         </div>

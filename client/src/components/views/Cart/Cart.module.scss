@@ -1,0 +1,238 @@
+@import '../../../styles/settings';
+
+.root {
+  @include flex(flex-start,center);
+  flex-wrap: wrap;
+  .navigation {
+    width: 100%;
+    margin: 10rem 0 2rem 4rem;
+    a {
+      text-decoration: none;
+      color: gray;
+    }
+    p {
+      @include flex(flex-start, center);
+      font-size: 1.2rem;
+      color: gray;
+      svg {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .container {
+    margin: 0 4rem;
+    width: 100%;
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    h1 {
+      width: 100%;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+    .productsContainer {
+      border: 1px solid rgba(0,0,0,0.2);
+      width: 100%;
+      @include flex(flex-start, center);
+      flex-wrap: wrap;
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+        thead {
+          background: $primary-light;
+          tr {
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            td {
+              text-transform: uppercase;
+              text-align: center;
+              padding: 1rem;
+              color: $main-font;
+              font-weight: 800;
+            }
+            td:nth-of-type(2) {
+              text-align: left;
+            }
+          }
+        }
+        tbody {
+          tr {
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            td {
+              text-align: center;
+              padding: 1rem;
+              img {
+                width: 6rem;
+              }
+            }
+            td:first-of-type {
+              text-align: center;
+            }
+            .name {
+              text-align: left;
+              font-weight: 800;
+              text-transform: uppercase;
+            }
+            .quantityContainer {
+              @include flex(center, center);
+              text-align: center;
+              .inputContainer {
+                @include flex(center, center);
+                width: auto;
+                height: 3rem;
+                div {
+                  @include flex(center, center);
+                  flex-wrap: wrap;
+                  height: 100%;
+                  width: 1.5rem;
+                  span {
+                    @include flex(center, center);
+                    width: 100%;
+                    height: 50%;
+                    border: 1px solid grey;
+                    svg {
+                      cursor: pointer;
+                    }
+                    &:hover {
+                      background: $main-btn;
+                    }
+                  }
+                }
+                input {
+                  height: 100%;
+                  width: 3rem;
+                  text-align: center;
+                  font-size: 1.5rem;
+                  font-weight: 800;
+                  border: 1px solid grey;
+                  border-right: none;
+                  outline: none;
+                }
+              }
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+              input[type=number] {
+                -moz-appearance:textfield;
+              }
+              .btnContainer {
+                width: auto;
+                button {
+                  cursor: pointer;
+                  font-size: 1.5rem;
+                  text-decoration: none;
+                  font-weight: 800;
+                  @include flex(center,center);
+                  width: 3rem;
+                  height: 3rem;
+                  background: $color-danger;
+                  color: $main-font;
+                  transition: $main-transition;
+                  border: none;
+                  &:hover {
+                    background: #e5543e;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .summarizing {
+      width: 100%;
+      background: $primary-light;
+      border: 1px solid rgba(0,0,0,0.2);
+      margin: 2rem 0;
+      @include flex(center,center);
+      .containerSum {
+        width: 95%;
+        @include flex(center, center);
+        flex-wrap: wrap;
+        .item {
+          @include flex(space-between,center);
+          width: 100%;
+          padding: 1rem .5rem;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          p {
+            color: $main-font;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+          }
+          span {
+            @include flex(space-between,center);
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: $main-transition;
+            button {
+              border: none;
+              background: transparent;
+              outline: none;
+              cursor: pointer;
+              svg {
+                font-size: 2.5rem;
+                transition: $main-transition;
+                color: $main-font;
+              }
+            }
+            &:hover {
+              color: $main-btn;
+              svg {
+                color: $main-btn;
+              }
+            }
+          }
+        }
+        .final {
+          width: 100%;
+          background: $main-font;
+          border: 1px solid rgba(0,0,0,0.2);
+          margin: 1rem 0;
+          @include flex(center, center);
+          flex-wrap: wrap;
+          div {
+            @include flex(flex-end,center);
+            width: 100%;
+            p {
+              margin: .5rem 2rem;
+              font-size: 1.2rem;
+            }
+            p:first-of-type {
+              font-weight: 800;
+            }
+          }
+        }
+        .btnContainer {
+          width: 100%;
+          @include flex(space-between, center);
+          a {
+            width: 48%;
+            text-decoration: none;
+            button {
+              cursor: pointer;
+              width: 100%;
+              font-size: 1.5rem;
+              text-decoration: none;
+              font-weight: 800;
+              @include flex(center,center);
+              height: 5rem;
+              background: $primary-light;
+              color: $main-font;
+              transition: $main-transition;
+              border: 3px solid $main-font;
+              margin-bottom: 1rem;
+              &:hover {
+                background: $main-btn;
+                border: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

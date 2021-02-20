@@ -8,6 +8,7 @@ import MainLayout from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/Homepage';
 import Shop from './components/views/Shop/Shop';
 import ProductPage from './components/views/Shop/ProductPage/ProductPage';
+import Cart from './components/views/Cart/Cart';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route exact path='/' component={Homepage} />
             <Route exact path='/shop' component={Shop} />
             <Route exact path='/shop/product/:id' component={ProductPage} />
+            <Route exact path='/cart' component={Cart} />
             {/*<Route exact path='*' component={}/>*/}
           </Switch>
         </MainLayout>
