@@ -1,0 +1,26 @@
+@import '../../../../styles/settings';
+
+@import '../../../../styles/settings';
+
+.root {
+  width: 100%;
+  label {
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 2rem;
+    margin: 1rem 0 2rem 0;
+    color: $main-font;
+  }
+  input {
+    width: 100%;
+    margin-top: .7rem;
+    margin-bottom: 2rem;
+    height: 4rem;
+    padding-left: 1rem;
+    font-size: 1.2rem;
+  }
+}
+

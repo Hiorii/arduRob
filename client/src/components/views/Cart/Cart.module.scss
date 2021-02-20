@@ -220,13 +220,14 @@
               font-weight: 800;
               @include flex(center,center);
               height: 5rem;
-              background: $primary-light;
+              background: $main-btn;
               color: $main-font;
               transition: $main-transition;
-              border: 3px solid $main-font;
               margin-bottom: 1rem;
+              border: none;
               &:hover {
-                background: $main-btn;
+                background: $main-font;
+                color: $main-btn;
                 border: none;
               }
             }

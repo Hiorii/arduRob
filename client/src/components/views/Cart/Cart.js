@@ -67,7 +67,7 @@ const Cart = () => {
                       </div>
                     </td>
                     <td>special discount</td>
-                    <td>total</td>
+                    <td>€ {product.price}</td>
                   </tr>
                 );
               })}
@@ -102,7 +102,7 @@ const Cart = () => {
               <Link to='/shop'>
                 <button>Continue Shopping</button>
               </Link>
-              <Link to='/'>
+              <Link to='/cart/checkout'>
                 <button>Checkout</button>
               </Link>
             </div>
