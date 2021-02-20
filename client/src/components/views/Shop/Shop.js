@@ -32,7 +32,7 @@ const Shop = () => {
       </div>
       <BannerShop />
       <div className={styles.featuresProd}>
-        <FeaturedProduct products={products}/>
+        <FeaturedProduct products={products} title='Related Products'/>
       </div>
       <div className={styles.advert}>
         <Advert />

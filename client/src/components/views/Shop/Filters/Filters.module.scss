@@ -10,6 +10,11 @@
   p {
     font-size: 1.3rem;
     margin: .8rem 0;
+    cursor: pointer;
+    &:hover {
+      font-weight: 800;
+      color: $main-btn;
+    }
   }
   .category {
     border-bottom: 1px solid $second-font;

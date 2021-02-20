@@ -1,0 +1,30 @@
+@import "../../../../../styles/settings";
+
+.root {
+  width: 100%;
+  height: auto;
+  background: $primary;
+  .container {
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    margin: 8rem 0;
+    width: 100%;
+    .list {
+      width: 90%;
+      @include flex(flex-start, center);
+      border-bottom: 3px solid $main-font;
+      padding-bottom: 1.5rem;
+      margin-left: 4rem;
+      p {
+        font-size: 3rem;
+        margin-right: 2rem;
+        color: $main-font;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .active {
+        color: $main-btn;
+      }
+    }
+  }
+}

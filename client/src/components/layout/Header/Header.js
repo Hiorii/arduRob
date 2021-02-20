@@ -41,7 +41,6 @@ const Header = () => {
       setActiveContact(false);
     }
   },[location]);
-  console.log(activeShop);
   return (
     <div className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>

@@ -5,6 +5,9 @@
   width: 25rem;
   .container {
     width: 100%;
+    &:hover {
+      background: $primary-white;
+    }
     .photo {
       @include flex(center,center);
       width: 25rem;

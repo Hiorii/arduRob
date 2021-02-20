@@ -4,7 +4,6 @@ const path = require('path');
 const session = require('express-session');
 const mongoData = require('./envData/mongoDbData');
 const connectToDb = require('./config/db');
-
 const app = express();
 
 const corsOption = {

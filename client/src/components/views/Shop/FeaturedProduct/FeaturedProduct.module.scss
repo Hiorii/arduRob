@@ -20,7 +20,8 @@
   .featureProductsContainer {
     margin: 3rem;
     @include flex(space-around,center);
-    flex-wrap: wrap;
+    overflow: scroll;
+    overflow-y: hidden;
     .featureProductsContainerInner {
       margin-bottom: 3rem;
       a {

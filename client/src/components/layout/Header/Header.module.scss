@@ -4,7 +4,7 @@
   position: fixed;
   height: 7rem;
   width: 100%;
-  background: transparent;
+  background: $primary;
   z-index: 99;
   transition: $main-transition;
   .container {

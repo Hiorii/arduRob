@@ -1,0 +1,29 @@
+@import '../../../../styles/settings';
+
+.root {
+  @include flex(center,center);
+  flex-wrap: wrap;
+  .productMain {
+    @include flex(center,center);
+    width: 100%;
+    z-index: 1;
+  }
+  .advertOne {
+    @include flex(center,center);
+    width: 100%;
+    z-index: -2;
+    margin-top: -3rem;
+  }
+  .featured {
+    @include flex(center,center);
+    width: 100%;
+    margin-top: -3rem;
+    z-index: 2;
+  }
+  .feedback {
+    @include flex(center,center);
+    width: 100%;
+    margin-top: -3rem;
+    z-index: 1;
+  }
+}

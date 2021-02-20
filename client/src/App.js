@@ -7,17 +7,20 @@ import './styles/global.scss';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/Homepage';
 import Shop from './components/views/Shop/Shop';
+import ProductPage from './components/views/Shop/ProductPage/ProductPage';
 
 const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <MainLayout />
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route exact path='/shop' component={Shop} />
-          {/*<Route exact path='*' component={}/>*/}
-        </Switch>
+        <MainLayout>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route exact path='/shop' component={Shop} />
+            <Route exact path='/shop/product/:id' component={ProductPage} />
+            {/*<Route exact path='*' component={}/>*/}
+          </Switch>
+        </MainLayout>
       </BrowserRouter>
     </Provider>
   );

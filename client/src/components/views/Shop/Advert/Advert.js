@@ -7,7 +7,7 @@ const Advert = () => {
     <div className={styles.root}>
       <div className={styles.titleCont}>
         <h1>Make your projects alive</h1>
-        <Typing speed={150} startDelay={500} loop={true} hideCursor={true}>
+        <Typing speed={100} startDelay={500} loop={true} hideCursor={true}>
           <p>Create.</p>
           <Typing.Delay ms={1000} />
           <Typing.Backspace count={8} />
