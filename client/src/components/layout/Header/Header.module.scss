@@ -43,7 +43,19 @@
       }
     }
     .icons {
+      @include flex(center,center);
       margin-top: 1rem;
+      p {
+        color: $main-font;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-right: 1rem;
+        margin-left: -1.5rem;
+        transition: $main-transition;
+        &:hover {
+          color: $main-btn;
+        }
+      }
       a {
         text-decoration: none;
         svg {
@@ -103,7 +115,19 @@
       }
     }
     .icons {
+      @include flex(center, center);
       margin-top: 1rem;
+      p {
+        color: $second-font;
+        cursor: pointer;
+        font-size: 1.4rem;
+        margin-right: 1rem;
+        margin-left: -1.5rem;
+        transition: $main-transition;
+        &:hover {
+          color: $main-btn;
+        }
+      }
       a {
         text-decoration: none;
         svg {

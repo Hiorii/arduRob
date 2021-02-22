@@ -3,6 +3,28 @@
 .root {
   @include flex(flex-start,center);
   flex-wrap: wrap;
+  .containerEmpty {
+    margin: auto;
+    margin-top: 10rem;
+    @include flex(center,center);
+    flex-wrap: wrap;
+    svg {
+      font-size: 15rem;
+    }
+    div {
+      width: 100%;
+      @include flex(center, center);
+      flex-wrap: wrap;
+      p {
+        text-align: center;
+        width: 100%;
+        font-size: 3rem;
+      }
+      .btn {
+        width: 20rem;
+      }
+    }
+  }
   .navigation {
     width: 100%;
     margin: 10rem 0 2rem 4rem;

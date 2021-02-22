@@ -2,6 +2,32 @@
 
 .root {
   width: 100%;
+  @include flex(center,center);
+  flex-wrap: wrap;
+  .googleCont {
+    width: 100%;
+    .googleBtn {
+      width: 100%;
+      svg {
+        font-size: 3rem;
+        margin: 0 2rem;
+      }
+    }
+  }
+  .or {
+    color: $main-font;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 2rem 0;
+    fieldset {
+      padding: 0 22rem;
+      border: none;
+      border-top: 1px solid $main-font;
+      legend {
+        padding: 0 1.3rem;
+      }
+    }
+  }
   label {
     width: 100%;
     font-size: 1.4rem;

@@ -28,7 +28,10 @@ const Filters = ({categories}) => {
 
 Filters.propTypes = {
   categories: PropTypes.object,
-  products: PropTypes.object,
+  products: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default Filters;

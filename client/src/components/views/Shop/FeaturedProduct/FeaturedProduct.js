@@ -31,7 +31,10 @@ const FeaturedProduct = ({title, products}) => {
 };
 
 FeaturedProduct.propTypes = {
-  products: PropTypes.object,
+  products: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   title: PropTypes.string,
 };
 

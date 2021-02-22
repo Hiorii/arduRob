@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import styles from './ProductMain.module.scss';
 import {addToCart} from '../../../../../redux/cartRedux';
@@ -9,7 +9,7 @@ import {MdKeyboardArrowRight} from 'react-icons/md';
 
 const ProductMain = () => {
   const history = useHistory();
-  const [currentProduct, setCurrentProduct] = useState(history.location.state);
+  const [currentProduct] = useState(history.location.state);
   const [isDelivery, setIsDelivery] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const dispatch = useDispatch();

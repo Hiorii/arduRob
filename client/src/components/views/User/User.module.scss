@@ -1,0 +1,196 @@
+@import '../../../styles/settings';
+
+@import '../../../styles/settings';
+
+.root {
+  width: 100%;
+  @include flex(flex-start, center);
+  flex-wrap: wrap;
+  .navigation {
+    width: 100%;
+    margin: 10rem 0 2rem 4rem;
+
+    a {
+      text-decoration: none;
+      color: gray;
+    }
+
+    p {
+      @include flex(flex-start, center);
+      font-size: 1.2rem;
+      color: gray;
+
+      svg {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .loginContainer {
+    width: 100%;
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    .title {
+      width: 100%;
+      margin: 1rem 4rem;
+      h1 {
+        font-size: 3rem;
+      }
+    }
+    .data {
+      width: 100%;
+      @include flex(center,center);
+      flex-wrap: wrap;
+      margin: 2rem 4rem;
+      background: $primary-light;
+      .dataType {
+        width: 100%;
+        @include flex(flex-start,center);
+        background: $main-font;
+        p {
+          font-size: 1.5rem;
+          padding: 2rem;
+          font-weight: 800;
+          background: $main-font;
+          cursor: pointer;
+        }
+        .active {
+          background: $primary-light;
+          color: $main-font;
+        }
+      }
+      form {
+        width: 90%;
+        .form {
+          width: 100%;
+          @include flex(flex-start,center);
+          flex-wrap: wrap;
+          margin: 3rem 2rem 0 0;
+        }
+        .shipment {
+          margin: 0;
+          width: 100%;
+          border-bottom: 2px solid $main-font;
+          border-top: 2px solid $main-font;
+          padding: 2rem 0;
+          @include flex(flex-start, flex-start);
+          div {
+            margin-right: 2rem;
+            h3 {
+              font-size: 1.4rem;
+              margin-bottom: 2rem;
+            }
+            .cont {
+              display: block;
+              position: relative;
+              padding-left: 35px;
+              margin-bottom: 12px;
+              cursor: pointer;
+              font-size: 1.3rem;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+            .cont input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+            }
+            /* Create a custom radio button */
+            .checkmark {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 25px;
+              width: 25px;
+              background-color: transparent;
+              border-radius: 50%;
+              border: 4px solid  $main-font;
+            }
+            /* On mouse-over, add a grey background color */
+            .cont:hover input ~ .checkmark {
+              background-color: transparent;
+            }
+            /* When the radio button is checked, add a blue background */
+            .cont input:checked ~ .checkmark {
+              background-color: transparent;
+            }
+            /* Create the indicator (the dot/circle - hidden when not checked) */
+            .checkmark:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+            /* Show the indicator (dot/circle) when checked */
+            .cont input:checked ~ .checkmark:after {
+              display: block;
+            }
+            /* Style the indicator (dot/circle) */
+            .cont .checkmark:after {
+              top: 2.5px;
+              left: 2px;
+              width: 13px;
+              height: 13px;
+              border-radius: 50%;
+              background: $main-font;
+            }
+          }
+        }
+        .comment {
+          width: 100%;
+          @include flex(flex-start,center);
+          flex-wrap: wrap;
+          margin-top: 2rem;
+          .com {
+            font-size: 1.3rem;
+            font-weight: 800;
+            width: 100%;
+          }
+          input[type="text"] {
+            width: 100%;
+            height: 4rem;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+            padding-left: 1rem;
+          }
+          .confirm {
+            width: 100%;
+            @include flex(flex-start, center);
+            flex-wrap: wrap;
+            div {
+              width: 100%;
+            }
+            input {
+              margin-right: 1rem;
+              transform: scale(1.4);
+            }
+            label {
+              font-size: 1.1rem;
+              span {
+                font-weight: 800;
+              }
+            }
+          }
+        }
+        button {
+          cursor: pointer;
+          font-size: 1.5rem;
+          margin: 2rem 0;
+          text-decoration: none;
+          font-weight: 800;
+          @include flex(center, center);
+          width: 100%;
+          height: 4rem;
+          background: $main-btn;
+          color: $main-font;
+          transition: $main-transition;
+          border: none;
+          &:hover {
+            background: $main-font;
+            color: $main-btn;
+          }
+        }
+      }
+    }
+  }
+}

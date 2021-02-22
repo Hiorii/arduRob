@@ -17,7 +17,7 @@ const Shop = () => {
   useEffect(()=> {
     dispatch(fetchProducts());
     dispatch(fetchCategory());
-  },[]);
+  },[dispatch]);
 
   return (
     <div className={styles.root}>

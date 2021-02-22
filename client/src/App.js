@@ -10,6 +10,7 @@ import Shop from './components/views/Shop/Shop';
 import ProductPage from './components/views/Shop/ProductPage/ProductPage';
 import Cart from './components/views/Cart/Cart';
 import Checkout from './components/views/Checkout/Checkout';
+import User from './components/views/User/User';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route exact path='/shop/product/:id' component={ProductPage} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/cart/checkout' component={Checkout} />
+            <Route exact path='/login' component={User} />
             {/*<Route exact path='*' component={}/>*/}
           </Switch>
         </MainLayout>

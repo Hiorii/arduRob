@@ -1,5 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {useDispatch} from 'react-redux';
+import {logoutUser} from '../../../redux/userRedux';
 import {Link, useHistory, useLocation} from 'react-router-dom';
+import {UserContext} from '../../../context/userContext';
 import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
 
@@ -10,9 +13,16 @@ const Header = () => {
   const [activeShop, setActiveShop] = useState(false);
   const [activeAbout, setActiveAbout] = useState(false);
   const [activeContact, setActiveContact] = useState(false);
+  const currentUser = useContext(UserContext).user;
+  const dispatch = useDispatch();
 
   const headerStyles = () => {
     setScrollPos(window.scrollY);
+  };
+
+  const userLogout = () => {
+    dispatch(logoutUser());
+    window.location.reload();
   };
 
   useEffect(()=> {
@@ -41,6 +51,7 @@ const Header = () => {
       setActiveContact(false);
     }
   },[location]);
+
   return (
     <div className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>
@@ -56,9 +67,12 @@ const Header = () => {
           <Link to='/' className={activeContact ? styles.active : ''}>Contact</Link>
         </div>
         <div className={styles.icons}>
-          <Link to='/'>
+          <Link to='/login'>
             <BiUserCircle />
           </Link>
+          {currentUser?.token &&
+            <p onClick={()=>userLogout()}>Logout</p>
+          }
           <Link to='/cart'>
             <BiCartAlt />
           </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Review.module.scss';
-import {BsStar, BsStarHalf, BsStarFill} from 'react-icons/bs';
+import {BsStar} from 'react-icons/bs';
 import Button from '../../../../../common/Button/Button';
 
 const Review = () => {

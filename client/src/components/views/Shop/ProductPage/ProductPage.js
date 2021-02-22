@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './ProductPage.module.scss';
 import ProductMain from './ProductMain/ProductMain';
 import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
 import Filters from '../Filters/Filters';
@@ -10,8 +10,8 @@ const ProductList = ({products, categories}) => {
   const [productsPerPage, setProductsPerPage] = useState([]);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [pageNumberLimit, setPageNumberLimit] = useState(5);
+  const [itemsPerPage] = useState(8);
+  const [pageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
@@ -20,13 +20,14 @@ const ProductList = ({products, categories}) => {
     setCurrentPage(e.target.id);
   };
 
-  const pageNumberSetter = () => {
-    const pages = [];
-    for(let i=1; i<= Math.ceil(allProducts.length/itemsPerPage);i++) {
-      pages.push(i);
-    }
-    setPageNumbers(pages);
-  };
+  const pageNumberSetter = useCallback(
+    () => {
+      const pages = [];
+      for(let i=1; i<= Math.ceil(allProducts.length/itemsPerPage);i++) {
+        pages.push(i);
+      }
+      setPageNumbers(pages);
+    },[allProducts.length, itemsPerPage]);
 
   const renderPageNumber = pageNumbers.map(number => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -82,11 +83,11 @@ const ProductList = ({products, categories}) => {
         products.data && setProductsPerPage(currentItems);
       }
     }
-  },[products, currentPage]);
+  },[products, currentPage, itemsPerPage]);
 
   useEffect(()=> {
     pageNumberSetter();
-  },[productsPerPage]);
+  },[productsPerPage, pageNumberSetter]);
 
   return (
     <div className={styles.root}>
@@ -147,7 +148,10 @@ const ProductList = ({products, categories}) => {
 
 ProductList.propTypes = {
   categories: PropTypes.object,
-  products: PropTypes.object,
+  products: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default ProductList;

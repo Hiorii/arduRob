@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import styles from './Feedback.module.scss';
@@ -8,7 +8,7 @@ const Feedback = () => {
   const feedbackUser = useSelector(state => state.feedback);
   const [currentUser, setCurrentUser] = useState(feedbackUser.filter(user=> user.id === 3));
 
-  const showFeedbackUser = () => {
+  const showFeedbackUser = useCallback(() => {
     let counter = 1;
     setInterval(()=> {
       setCurrentUser(feedbackUser.filter(user=> user.id === counter));
@@ -17,11 +17,11 @@ const Feedback = () => {
         counter = 1;
       }
     },7000);
-  };
+  },[feedbackUser]);
 
   useEffect(()=> {
     showFeedbackUser();
-  },[]);
+  },[showFeedbackUser]);
 
   return (
     <div className={styles.root}>
