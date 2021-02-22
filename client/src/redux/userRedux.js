@@ -18,6 +18,20 @@ export const authUser = payload => ({ payload, type: AUTH });
 export const logoutUser = payload => ({ payload, type: LOGOUT });
 
 /* thunk creators */
+export const signInWithGoogle = (formData, history) => async (dispatch) => {
+  try {
+    const googleData = formData.data.result;
+    const googleToken = formData.data.token;
+    const { data } = await axios.post(`${API_URL}/signGoogle`, googleData);
+
+    dispatch(authUser({data:{...data, token: googleToken}}));
+    history.push('/');
+    window.location.reload();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const signIn = (formData, history) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${API_URL}/signin`, formData);
@@ -41,7 +55,6 @@ export const signUp = (formData, history) => async (dispatch) => {
     console.log(err);
   }
 };
-
 
 /* reducer */
 export const reducer = (statePart = initialState, action = {}) => {

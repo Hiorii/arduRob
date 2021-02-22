@@ -13,6 +13,34 @@ exports.getAll = async(req, res) => {
     }
 };
 
+exports.signGoogle = async(req,res) => {
+    const {email, givenName, familyName } = req.body;
+
+    try {
+        const existingUser = await User.findOne({email});
+
+        if(!existingUser) {
+            const newUser = new User({
+                firstName: givenName,
+                lastName: familyName,
+                telephone: ' ',
+                email: email,
+                password: await bcrypt.hash('defaultPasswordGoogle', 12),
+                adress: ' ',
+                city: ' ',
+                postCode: ' ',
+                country: ' ',
+            });
+            await newUser.save();
+            res.status(200).json({newUser});
+        } else {
+            res.status(200).json({result: existingUser});
+        }
+    } catch (err) {
+        res.status(500).json({message: err});
+    }
+};
+
 exports.signIn = async(req,res) => {
     const {email, password } = req.body;
 
@@ -41,17 +69,17 @@ exports.signUp = async(req,res) => {
         const existingUser = await User.findOne({email});
 
         if(existingUser) res.status(400).json({message: 'User already exist'});
+        else {
+            if(password !== confirmPassword) res.status(400).json({message: 'Password do not match'});
 
-        if(password !== confirmPassword) res.status(400).json({message: 'Password do not match'});
+            const hashedPassword = await bcrypt.hash(password, 12);
 
-        const hashedPassword = await bcrypt.hash(password, 12);
+            const result = await User.create({ firstName, lastName, telephone, email, password: hashedPassword, adress, city, postCode, country });
 
-        const result = await User.create({ firstName, lastName, telephone, email, password: hashedPassword, adress, city, postCode, country });
+            const token = jwt.sign({email: result.email, id: result._id}, 'arduRobSecretPass', {expiresIn: '1h'});
 
-        const token = jwt.sign({email: result.email, id: result._id}, 'arduRobSecretPass', {expiresIn: '1h'});
-
-        res.status(200).json({result, token});
-
+            res.status(200).json({result, token});
+        }
     } catch (err) {
         res.status(500).json({message: err});
     }

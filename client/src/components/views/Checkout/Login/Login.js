@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {authUser, getCurrentUser} from '../../../../redux/userRedux';
+import {authUser, getCurrentUser, signInWithGoogle} from '../../../../redux/userRedux';
 import styles from './Login.module.scss';
 import {GoogleLogin} from 'react-google-login';
 import {AiFillGoogleCircle} from 'react-icons/ai';
@@ -16,9 +16,7 @@ const Login = ({handleChange}) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
-      dispatch(authUser({data: {result, token}}));
-      history.push('/');
-      window.location.reload();
+      dispatch(signInWithGoogle({data: {result, token}}, history));
     } catch (err) {
       console.log(err);
     }
