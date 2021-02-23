@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {authUser, getCurrentUser, signInWithGoogle} from '../../../../redux/userRedux';
+import {signInWithGoogle} from '../../../../redux/userRedux';
+import {AlertContext} from '../../../../context/alertContext';
 import styles from './Login.module.scss';
 import {GoogleLogin} from 'react-google-login';
 import {AiFillGoogleCircle} from 'react-icons/ai';
-import Register from '../Register/Register';
 
 const Login = ({handleChange}) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const alert = useContext(AlertContext);
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -23,6 +24,7 @@ const Login = ({handleChange}) => {
   };
 
   const googleFailure = () => {
+    alert.successAlert('Google sign in was unsuccessful. Try again later');
     console.log('Google sign in was unsuccessful. Try again later');
   };
 

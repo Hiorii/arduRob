@@ -1,6 +1,6 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styles  from './User.module.scss';
 import {Link} from 'react-router-dom';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
@@ -8,7 +8,8 @@ import Login from '../Checkout/Login/Login';
 import Register from '../Checkout/Register/Register';
 import UserProfile from './UserProfile/UserProfile';
 import {UserContext} from '../../../context/userContext';
-import {signUp, signIn, authUser} from '../../../redux/userRedux';
+import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
+import {AlertContext} from '../../../context/alertContext';
 
 const initialState = {firstName: '',lastName:'',telephone:'',email:'',password:'',confirmPassword:'', adress:'', city:'',postCode:'', country:'' };
 
@@ -20,6 +21,8 @@ const User = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const alert = useContext(AlertContext);
+  const isUserFetch = useSelector(isUserFetched);
 
   const activeLogin = () => {
     setIsLogin(true);
@@ -31,13 +34,35 @@ const User = () => {
     setIsRegister(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
     if(isRegister) {
-      dispatch(signUp(formData, history));
+      for (let key in formData) {
+        if (formData[key] === '') {
+          alert.dangerAlert(`${key} field can not be empty`);
+          setTimeout(()=> {alert.closeAlert();},3000);
+        } else if(formData.password !== formData.confirmPassword) {
+          alert.dangerAlert(`Passwords are not the same`);
+          setTimeout(()=> {alert.closeAlert();},3000);
+        } else {
+          await dispatch(signUp(formData, history));
+          isUserFetch?.error && alert.dangerAlert('User with given email already exist');
+          setTimeout(()=> {alert.closeAlert();},3000);
+        }
+      }
     } else if(isLogin) {
-      dispatch(signIn(formData, history));
+      if(formData.email === '') {
+        alert.dangerAlert('E-mail field can not be empty');
+        setTimeout(()=> {alert.closeAlert();},2000);
+
+      } else if(formData.password === '') {
+        alert.dangerAlert('Password field can not be empty');
+        setTimeout(()=> {alert.closeAlert();},2000);
+      } else {
+        await dispatch(signIn(formData, history));
+        isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
+        setTimeout(()=> {alert.closeAlert();},3000);
+      }
     }
   };
 

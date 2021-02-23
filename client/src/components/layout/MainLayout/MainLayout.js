@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './MainLayout.module.scss';
 import Header from '../Header/Header';
+import Alerts from '../../features/Alert/Alert';
 
 const MainLayout = ({children}) => {
   const location = useLocation();
@@ -13,6 +14,7 @@ const MainLayout = ({children}) => {
 
   return (
     <div className={styles.root}>
+      <Alerts />
       <Header />
       <div className={styles.child}>
         {children}

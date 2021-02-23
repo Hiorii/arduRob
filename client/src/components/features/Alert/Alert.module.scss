@@ -1,0 +1,21 @@
+@import '../../../styles/settings';
+
+.root {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  @include flex(center, center);
+  div:first-child {
+    width: auto;
+    svg {
+      font-size: 2.5rem;
+      margin: auto;
+    }
+  }
+  div {
+    font-size: 2rem;
+  }
+  div:first-letter {
+    text-transform: capitalize;
+  }
+}
