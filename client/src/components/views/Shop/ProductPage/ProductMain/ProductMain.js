@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import styles from './ProductMain.module.scss';
-import {addToCart} from '../../../../../redux/cartRedux';
+import {addToCart} from '../../../../../redux/productRedux';
 import {BsPlus, BsArrowRightShort, BsArrowDown} from 'react-icons/bs';
 import {BiMinus, BiCheck, BiCartAlt} from 'react-icons/bi';
 import {MdKeyboardArrowRight} from 'react-icons/md';
+import {handleAddQuantity, handleMinusQuantity} from '../../../../../redux/productRedux';
 
 const ProductMain = () => {
   const history = useHistory();
@@ -26,6 +27,14 @@ const ProductMain = () => {
 
   const addProductToCart = (currentProduct) => {
     dispatch(addToCart(currentProduct));
+  };
+
+  const addQuantity = (id) => {
+    dispatch(handleAddQuantity(id));
+  };
+
+  const minusQuantity = (id) => {
+    dispatch(handleMinusQuantity(id));
   };
 
   return (
@@ -109,10 +118,11 @@ const ProductMain = () => {
                 type="number"
                 id='quantity'
                 defaultValue='1'
+                value={currentProduct.cartQuantiy}
               />
               <div>
-                <span> <BsPlus /> </span>
-                <span> <BiMinus /> </span>
+                <span onClick={()=>addQuantity(currentProduct._id)}> <BsPlus/> </span>
+                <span onClick={()=>minusQuantity(currentProduct._id)}> <BiMinus/> </span>
               </div>
             </div>
             <div className={styles.btnContainer}>

@@ -10,7 +10,6 @@ const UserProvider = ({children}) => {
   useEffect(()=> {
     setUser(currentUser);
   },[]);
-  console.log(user);
   return (
     <div>
       <UserContext.Provider value={{user}}>

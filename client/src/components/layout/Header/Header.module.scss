@@ -45,6 +45,7 @@
     .icons {
       @include flex(center,center);
       margin-top: 1rem;
+      position: relative;
       p {
         color: $main-font;
         cursor: pointer;
@@ -61,12 +62,25 @@
         svg {
           color: $main-font;
           margin-right: 2rem;
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           transition: $main-transition;
           &:hover {
             color: $main-btn;
           }
         }
+      }
+      .totalQuantity {
+        @include flex(center,center);
+        color: $main-font;
+        font-size: 1.2rem;
+        font-weight: 800;
+        background: $main-btn;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        position: absolute;
+        right: .6rem;
+        bottom: 1.5rem;
       }
     }
   }
@@ -117,6 +131,7 @@
     .icons {
       @include flex(center, center);
       margin-top: 1rem;
+      position: relative;
       p {
         color: $second-font;
         cursor: pointer;
@@ -133,12 +148,25 @@
         svg {
           color: $second-font;
           margin-right: 2rem;
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           transition: $main-transition;
           &:hover {
             color: $main-btn;
           }
         }
+      }
+      .totalQuantity {
+        @include flex(center,center);
+        color: $main-font;
+        font-size: 1.2rem;
+        font-weight: 800;
+        background: $main-btn;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        position: absolute;
+        right: .6rem;
+        bottom: 1.5rem;
       }
     }
   }

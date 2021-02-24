@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {logoutUser} from '../../../redux/userRedux';
 import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../../../context/userContext';
 import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
+import {cartTotalQuantity} from '../../../redux/cartRedux';
 
 const Header = () => {
   const history = useHistory();
@@ -13,9 +14,10 @@ const Header = () => {
   const [activeShop, setActiveShop] = useState(false);
   const [activeAbout, setActiveAbout] = useState(false);
   const [activeContact, setActiveContact] = useState(false);
+  const [cartTotal, setCartTotal] = useState('0');
   const currentUser = useContext(UserContext).user;
   const dispatch = useDispatch();
-
+  const cartTotalValue = useSelector(cartTotalQuantity);
   const headerStyles = () => {
     setScrollPos(window.scrollY);
   };
@@ -26,11 +28,15 @@ const Header = () => {
   };
 
   useEffect(()=> {
+    if(cartTotalValue.length>0) {
+      const total = cartTotalValue.reduce((a,b)=> a + b);
+      setCartTotal(total);
+    }
     window.addEventListener('scroll', headerStyles);
     return () => {
       window.removeEventListener('scroll', headerStyles);
     };
-  },[]);
+  },[cartTotalValue]);
 
   useEffect(()=> {
     if(history.location.pathname === '/shop') {
@@ -67,6 +73,9 @@ const Header = () => {
           <Link to='/' className={activeContact ? styles.active : ''}>Contact</Link>
         </div>
         <div className={styles.icons}>
+          <div className={styles.totalQuantity}>
+            {cartTotal}
+          </div>
           <Link to='/login'>
             <BiUserCircle />
           </Link>

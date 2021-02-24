@@ -6,7 +6,7 @@ import ProductBox from '../ProductBox/ProductBox';
 
 const FeaturedProduct = ({title, products}) => {
   const productsList = products.data;
-  const featuredProducts = productsList && productsList.data.filter(product => product.featured === true);
+  const featuredProducts = productsList && productsList.filter(product => product.featured === true);
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -18,7 +18,12 @@ const FeaturedProduct = ({title, products}) => {
           {featuredProducts && featuredProducts.map((product, index) => {
             return (
               <div key={index} className={styles.featureProductsContainerInner}>
-                <Link to='/' >
+                <Link
+                  to={{
+                    pathname: `/shop/product/${product._id}`,
+                    state: product,
+                  }}
+                >
                   <ProductBox product={product}/>
                 </Link>
               </div>

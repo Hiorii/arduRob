@@ -1,21 +1,43 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {getAllCart} from '../../../redux/cartRedux';
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './Cart.module.scss';
 import {Link} from 'react-router-dom';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
 import {BiMinus, BiCartAlt} from 'react-icons/bi/index';
 import {BsPlus, BsArrowRightShort} from 'react-icons/bs';
 import Button from '../../common/Button/Button';
+import {handleAddQuantity, handleMinusQuantity, handleClear} from '../../../redux/cartRedux';
+import {getAllProducts} from '../../../redux/productRedux';
 
 const Cart = () => {
-  const getProductFromCart = useSelector(getAllCart);
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState();
+  const [handleChange, setHandleChange] = useState(true);
+  const dispatch = useDispatch();
+
+  const addQuantity = (id) => {
+    setHandleChange(!handleChange);
+    dispatch(handleAddQuantity(id));
+  };
+
+  const minusQuantity = (id) => {
+    setHandleChange(!handleChange);
+    dispatch(handleMinusQuantity(id));
+  };
+
+  const clearItem = (id) => {
+    setHandleChange(!handleChange);
+    dispatch(handleClear(id));
+  };
+
+  const totalPrice = () => {
+    const prices = cartProducts.map(product => product.price * product.cartQuantiy);
+    const total = prices.reduce((a,b)=> a + b);
+    return total;
+  };
 
   useEffect(()=> {
-    setCartProducts(getProductFromCart);
-  },[getProductFromCart]);
-
+    setCartProducts(JSON.parse(localStorage.getItem('cart'))?.data || []);
+  },[handleChange]);
 
   return (
     <div className={styles.root}>
@@ -28,7 +50,7 @@ const Cart = () => {
           Shoping Cart
         </p>
       </div>
-      {cartProducts.length !== 0 &&
+      {cartProducts && cartProducts.length !== 0 &&
         <div className={styles.container}>
           <h1>Shopping Cart</h1>
           <div className={styles.productsContainer}>
@@ -56,20 +78,22 @@ const Cart = () => {
                             <input
                               type="number"
                               id='quantity'
+                              value={product.cartQuantiy}
                               defaultValue='1'
+                              readOnly
                             />
                             <div>
-                              <span> <BsPlus/> </span>
-                              <span> <BiMinus/> </span>
+                              <span onClick={()=>addQuantity(product._id)}> <BsPlus/> </span>
+                              <span onClick={()=>minusQuantity(product._id)}> <BiMinus/> </span>
                             </div>
                           </div>
                           <div className={styles.btnContainer}>
-                            <button> X</button>
+                            <button onClick={()=>clearItem(product._id)}> X </button>
                           </div>
                         </div>
                       </td>
                       <td>special discount</td>
-                      <td>€ {product.price}</td>
+                      <td>€ {parseFloat(product.price * product.cartQuantiy).toFixed(2)}</td>
                     </tr>
                   );
                 })}
@@ -88,8 +112,8 @@ const Cart = () => {
               </div>
               <div className={styles.final}>
                 <div>
-                  <p>Sub-Total</p>
-                  <p>price</p>
+                  <p>Sub-Total:</p>
+                  <p>€ {totalPrice()}</p>
                 </div>
                 <div>
                   <p>Discount Value</p>
@@ -97,7 +121,7 @@ const Cart = () => {
                 </div>
                 <div>
                   <p>Total:</p>
-                  <p>price</p>
+                  <p>total</p>
                 </div>
               </div>
               <div className={styles.btnContainer}>
@@ -112,7 +136,7 @@ const Cart = () => {
           </div>
         </div>
       }
-      {cartProducts.length === 0 &&
+      {!cartProducts || cartProducts.length === 0 &&
         <div className={styles.containerEmpty}>
           <BiCartAlt />
           <div>

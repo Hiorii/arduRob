@@ -15,7 +15,6 @@ const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(()=> {
-    dispatch(fetchProducts());
     dispatch(fetchCategory());
   },[dispatch]);
 

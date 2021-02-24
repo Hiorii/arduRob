@@ -75,11 +75,11 @@ const ProductList = ({products, categories}) => {
 
   useEffect(()=> {
     if(products.data){
-      if(products.data.data.length > 0) {
-        products.data && setAllProducts(products.data.data);
+      if(products.data.length > 0) {
+        products.data && setAllProducts(products.data);
         const indexOfLastItem = currentPage * itemsPerPage;
         const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-        const currentItems = products.data.data.slice(indexOfFirstItem, indexOfLastItem);
+        const currentItems = products.data.slice(indexOfFirstItem, indexOfLastItem);
         products.data && setProductsPerPage(currentItems);
       }
     }
