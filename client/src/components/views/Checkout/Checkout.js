@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles  from './Checkout.module.scss';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
 import Login from './Login/Login';
 import Register from './Register/Register';
@@ -10,6 +10,8 @@ const Checkout = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const [isGuest, setIsGuest] = useState(false);
+  const history = useHistory();
+  const cartProducts = history.location.state;
 
   const activeLogin = () => {
     setIsLogin(true);

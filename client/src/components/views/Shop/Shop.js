@@ -11,7 +11,7 @@ import Advert from './Advert/Advert';
 
 const Shop = () => {
   const categories = useSelector(getAllCategory);
-  const products = useSelector(getAllProducts);
+  const products = JSON.parse(localStorage.getItem('products'));
   const dispatch = useDispatch();
 
   useEffect(()=> {

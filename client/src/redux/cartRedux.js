@@ -2,7 +2,7 @@ import {initialState} from './initialState';
 
 /* selectors */
 export const getAllCart = () => JSON.parse(localStorage.getItem('cart'));
-export const cartTotalQuantity = () => JSON.parse(localStorage.getItem('cart')).data.map(product => product.cartQuantiy);
+export const cartTotalQuantity = () => JSON.parse(localStorage.getItem('cart'))?.data?.map(product => product.cartQuantiy);
 
 /* action name creator */
 const reducerName = 'cart';
@@ -23,9 +23,19 @@ export const reducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case HANDLE_ADD_QUANTITY: {
       const cartItems = JSON.parse(localStorage.getItem('cart')).data;
+      const products = JSON.parse(localStorage.getItem('products')).data;
       const updatedItems = cartItems.map(product => {
         if(product._id === action.payload) {
           product.cartQuantiy = product.cartQuantiy + 1;
+          const newItems = products.map(item => {
+            if(item._id === product._id) {
+              item.cartQuantiy = item.cartQuantiy + 1;
+              return item;
+            } else {
+              return item;
+            }
+          });
+          localStorage.setItem('products', JSON.stringify({data: newItems}));
           return product;
         } else {
           return product;
@@ -36,10 +46,20 @@ export const reducer = (statePart = initialState, action = {}) => {
     }
     case HANDLE_MINUS_QUANTITY: {
       const cartItems = JSON.parse(localStorage.getItem('cart')).data;
+      const products = JSON.parse(localStorage.getItem('products')).data;
       const updatedItems = cartItems.map(product => {
         if(product._id === action.payload) {
-          if(product.cartQuantiy > 1) {
+          if(product.cartQuantiy > 0) {
             product.cartQuantiy = product.cartQuantiy - 1;
+            const newItems = products.map(item => {
+              if(item._id === product._id) {
+                item.cartQuantiy = item.cartQuantiy - 1;
+                return item;
+              } else {
+                return item;
+              }
+            });
+            localStorage.setItem('products', JSON.stringify({data: newItems}));
           }
           return product;
         } else {
@@ -51,11 +71,21 @@ export const reducer = (statePart = initialState, action = {}) => {
     }
     case HANDLE_CLEAR_ITEM: {
       const cartItems = JSON.parse(localStorage.getItem('cart')).data;
+      const products = JSON.parse(localStorage.getItem('products')).data;
       const itemToRemove = cartItems.findIndex(product =>
         product._id === action.payload
       );
       cartItems.splice(itemToRemove,1);
       localStorage.setItem('cart', JSON.stringify({data: cartItems}));
+      const newItems = products.map(item => {
+        if(item._id === action.payload) {
+          item.cartQuantiy = 0;
+          return item;
+        } else {
+          return item;
+        }
+      });
+      localStorage.setItem('products', JSON.stringify({data: newItems}));
       return statePart;
     }
     default:

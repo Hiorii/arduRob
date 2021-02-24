@@ -128,7 +128,11 @@ const Cart = () => {
                 <Link to='/shop'>
                   <button>Continue Shopping</button>
                 </Link>
-                <Link to='/cart/checkout'>
+                <Link to={{
+                  pathname: '/cart/checkout',
+                  state: cartProducts,
+                }}
+                >
                   <button>Checkout</button>
                 </Link>
               </div>

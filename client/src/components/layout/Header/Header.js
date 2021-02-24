@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   useEffect(()=> {
-    if(cartTotalValue.length>0) {
+    if(cartTotalValue?.length>0) {
       const total = cartTotalValue.reduce((a,b)=> a + b);
       setCartTotal(total);
     }

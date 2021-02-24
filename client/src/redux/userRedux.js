@@ -27,7 +27,11 @@ export const signInWithGoogle = (formData, history) => async (dispatch) => {
     const { data } = await axios.post(`${API_URL}/signGoogle`, googleData);
 
     dispatch(authUser({data:{...data, token: googleToken}}));
-    history.push('/');
+    if(history.location.pathname === '/login') {
+      history.push('/');
+    } else {
+      history.push(history.location.pathname);
+    }
     window.location.reload();
   } catch (err) {
     console.log(err);
@@ -39,7 +43,11 @@ export const signIn = (formData, history) => async (dispatch) => {
     const { data } = await axios.post(`${API_URL}/signin`, formData);
 
     dispatch(authUser({data: data}));
-    history.push('/');
+    if(history.location.pathname === '/login') {
+      history.push('/');
+    } else {
+      history.push(history.location.pathname);
+    }
     window.location.reload();
   } catch (err) {
     dispatch(failFetch(err));

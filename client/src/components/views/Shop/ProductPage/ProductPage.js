@@ -8,7 +8,7 @@ import {useSelector} from 'react-redux';
 import {getAllProducts} from '../../../../redux/productRedux';
 
 const ProductPage = () => {
-  const products = useSelector(getAllProducts);
+  const products = JSON.parse(localStorage.getItem('products'));
   return (
     <div className={styles.root}>
       <div className={styles.productMain}>

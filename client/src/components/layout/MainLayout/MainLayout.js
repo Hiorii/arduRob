@@ -10,15 +10,13 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const MainLayout = ({children}) => {
   const location = useLocation();
-  const [initialLoad, setInitialLoad] = useState(false);
-  const products = useSelector(getAllProducts);
+  const dataProduct = JSON.parse(localStorage.getItem('products'));
 
   const dispatch = useDispatch();
 
   useEffect(()=> {
-    if(!initialLoad) {
+    if(!dataProduct) {
       dispatch(fetchProducts());
-      setInitialLoad(true);
     }
     dispatch(fetchCategory());
   },[dispatch]);

@@ -15,7 +15,6 @@ const ProductList = ({products, categories}) => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
-
   const changePage = (e) => {
     setCurrentPage(e.target.id);
   };
