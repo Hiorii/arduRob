@@ -22,6 +22,7 @@ app.use('/api', require('./routes/products.routes'));
 app.use('/api', require('./routes/category.routes'));
 app.use('/api', require('./routes/subCategory.routes'));
 app.use('/api', require('./routes/user.routes'));
+app.use('/api', require('./routes/cart.routes'));
 
 /* API ERROR PAGES */
 app.use('/api', (req,res) => {

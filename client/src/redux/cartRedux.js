@@ -1,4 +1,6 @@
 import {initialState} from './initialState';
+import axios from 'axios';
+import {API_URL} from '../config';
 
 /* selectors */
 export const getAllCart = () => JSON.parse(localStorage.getItem('cart'));
@@ -17,6 +19,19 @@ const HANDLE_CLEAR_ITEM = createActionName('HANDLE_CLEAR_ITEM');
 export const handleAddQuantity = payload => ({ payload, type: HANDLE_ADD_QUANTITY });
 export const handleMinusQuantity = payload => ({ payload, type: HANDLE_MINUS_QUANTITY });
 export const handleClear = payload => ({ payload, type: HANDLE_CLEAR_ITEM });
+
+/* thunk creators */
+export const sendOrder = (order) => {
+  return async() => {
+    try {
+      console.log(order);
+      await axios.post(`${API_URL}/cart`, order);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 
 /* reducer */
 export const reducer = (statePart = initialState, action = {}) => {

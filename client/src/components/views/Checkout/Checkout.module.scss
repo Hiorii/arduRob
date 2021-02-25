@@ -59,12 +59,12 @@
         @include flex(flex-start,center);
         flex-wrap: wrap;
         margin: 3rem 2rem 0 0;
+        border-bottom: 2px solid $main-font;
       }
       .shipment {
         margin: 0;
         width: 100%;
         border-bottom: 2px solid $main-font;
-        border-top: 2px solid $main-font;
         padding: 2rem 0;
         @include flex(flex-start, flex-start);
         div {

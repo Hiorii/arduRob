@@ -79,7 +79,6 @@ const Cart = () => {
                               type="number"
                               id='quantity'
                               value={product.cartQuantiy}
-                              defaultValue='1'
                               readOnly
                             />
                             <div>
