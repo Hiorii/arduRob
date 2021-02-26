@@ -31,7 +31,7 @@ const Shop = () => {
       </div>
       <BannerShop />
       <div className={styles.featuresProd}>
-        <FeaturedProduct products={products} title='Related Products'/>
+        <FeaturedProduct products={products} title='Feature Products'/>
       </div>
       <div className={styles.advert}>
         <Advert />

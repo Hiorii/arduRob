@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './Guest.module.scss';
+import PropTypes from 'prop-types';
+import Login from '../Login/Login';
 
-const Guest = (handleChange) => {
+const Guest = ({handleChange}) => {
   return (
     <div className={styles.root}>
       <label htmlFor="firstName">First Name</label>
@@ -72,6 +74,10 @@ const Guest = (handleChange) => {
       />
     </div>
   );
+};
+
+Guest.propTypes = {
+  handleChange: PropTypes.func,
 };
 
 export default Guest;

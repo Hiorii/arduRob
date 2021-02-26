@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styles  from './Checkout.module.scss';
 import {Link, useHistory} from 'react-router-dom';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
@@ -8,12 +8,19 @@ import Register from './Register/Register';
 import Guest from './Guest/Guest';
 import {sendOrder} from '../../../redux/cartRedux';
 import {UserContext} from '../../../context/userContext';
+import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
+import {AlertContext} from '../../../context/alertContext';
+
+const initialState = {firstName: '',lastName:'',telephone:'',email:'',password:'',confirmPassword:'', adress:'', city:'',postCode:'', country:'' };
+const guestState = {firstName: '',lastName:'',telephone:'',email:'', adress:'', city:'',postCode:'', country:'' };
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const [isGuest, setIsGuest] = useState(false);
+  const [formData, setFormData] = useState(initialState);
+  const [guestData, setGuestData] = useState(guestState);
   const [order, setOrder] = useState({});
   const [orderProducts, setOrderProducts] = useState({});
   const [shipping, setShipping] = useState('DHL Delivery');
@@ -21,9 +28,12 @@ const Checkout = () => {
   const [comment, setComment] = useState('');
   const [privacy, setPrivacy] = useState(false);
   const [terms, setTerms] = useState(false);
+  const [user, setUser] = useState({});
   const history = useHistory();
   const cartProducts = JSON.parse(localStorage.getItem('cart'))?.data;
-  const user = useContext(UserContext).user;
+  const currentUser = useContext(UserContext).user;
+  const alert = useContext(AlertContext);
+  const isUserFetch = useSelector(isUserFetched);
 
   const activeLogin = () => {
     setIsLogin(true);
@@ -41,6 +51,63 @@ const Checkout = () => {
     setIsGuest(true);
   };
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if(isRegister) {
+      for (let key in formData) {
+        if (formData[key] === '') {
+          alert.dangerAlert(`${key} field can not be empty`);
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.password !== formData.confirmPassword) {
+          alert.dangerAlert(`Passwords are not the same`);
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else {
+          await dispatch(signUp(formData, history));
+          isUserFetch?.error && alert.dangerAlert('User with given email already exist');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        }
+      }
+    } else if(isLogin) {
+      if(formData.email === '') {
+        alert.dangerAlert('E-mail field can not be empty');
+        setTimeout(()=> {alert.closeAlert();},4000);
+
+      } else if(formData.password === '') {
+        alert.dangerAlert('Password field can not be empty');
+        setTimeout(()=> {alert.closeAlert();},4000);
+      } else {
+        await dispatch(signIn(formData, history));
+        isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
+        setTimeout(()=> {alert.closeAlert();},4000);
+      }
+    } else if(isGuest) {
+      for (let key in guestData) {
+        if (guestData[key] === '') {
+          alert.dangerAlert(`${key} field can not be empty`);
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if (guestData.email !== '' && guestData.firstName !== '' && guestData.lastName !== '' && guestData.adress !== '' && guestData.postCode !== '' && guestData.city !== '' && guestData.country !== '' && guestData.telephone !== '') {
+          setUser({
+            result: {
+              email: guestData.email,
+              firstName: guestData.firstName,
+              lastName: guestData.lastName,
+              adress: guestData.adress,
+              postCode: guestData.postCode,
+              city: guestData.city,
+              country: guestData.country,
+              telephone: guestData.telephone,
+            },
+          });
+        }
+      }
+    }
+  };
+
+  const handleChange = e => {
+    isRegister && setFormData({...formData, [e.target.name]: e.target.value});
+    isGuest && setGuestData({...guestData, [e.target.name]: e.target.value});
+  };
+
   const confirmOrder = (e) => {
     e.preventDefault();
     setOrder({
@@ -51,7 +118,7 @@ const Checkout = () => {
       city: user.result.city,
       country: user.result.country,
       phone: user.result.telephone,
-      productsOrder: orderProducts.map(productOrder => {
+      productsOrder: orderProducts?.map(productOrder => {
         return ({
           product: productOrder.name,
           quantity: productOrder.cartQuantiy,
@@ -65,11 +132,19 @@ const Checkout = () => {
   };
 
   useEffect(()=> {
+    setUser(currentUser);
     setOrderProducts(cartProducts);
-    if(order) {
-      dispatch(sendOrder(order));
+    console.log(order);
+    if(order && Object.keys(order).length !==0 && user) {
+      if(!privacy || !terms) {
+        alert.dangerAlert(`You must accept Provacy Policy and Terms & Conditions`);
+        setTimeout(()=> {alert.closeAlert();},4000);
+      } else {
+        dispatch(sendOrder(order));
+        history.push('/cart/checkout/success');
+      }
     }
-  },[order]);
+  },[order, currentUser]);
 
   return (
     <div className={styles.root}>
@@ -110,14 +185,19 @@ const Checkout = () => {
             Guest
           </p>
         </div>
-        <form>
+        <form onSubmit={(e)=>handleSubmit(e)}>
           {!user &&
             <div className={styles.form}>
-              {isLogin && <Login />}
-              {isRegister && <Register />}
-              {isGuest && <Guest />}
+              {isLogin && <Login handleChange={handleChange}/>}
+              {isRegister && <Register handleChange={handleChange}/>}
+              {isGuest && <Guest handleChange={handleChange}/>}
+              {isLogin && <button type='submit' className={styles.btnUser}>Login</button>}
+              {isRegister && <button type='submit' className={styles.btnUser}>Register</button>}
+              {isGuest && <button type='submit' className={styles.btnUser}>Confirm</button>}
             </div>
           }
+        </form>
+        <form className={!user ? styles.shipmentDetails : ''}>
           <div className={styles.shipment}>
             <div>
               <h3>Shipping Method</h3>

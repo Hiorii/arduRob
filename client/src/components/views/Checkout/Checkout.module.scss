@@ -184,6 +184,13 @@
           color: $main-btn;
         }
       }
+      .btnUser {
+        width: 100%;
+      }
+    }
+    .shipmentDetails {
+      pointer-events: none;
+      opacity: 0.3;
     }
   }
 }
