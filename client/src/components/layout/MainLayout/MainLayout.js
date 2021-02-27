@@ -7,6 +7,7 @@ import Alerts from '../../features/Alert/Alert';
 import {fetchProducts, getAllProducts} from '../../../redux/productRedux';
 import {fetchCategory} from '../../../redux/categoryRedux';
 import {useDispatch, useSelector} from 'react-redux';
+import Popup from '../../features/Popup/Popup';
 
 const MainLayout = ({children}) => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const MainLayout = ({children}) => {
   return (
     <div className={styles.root}>
       <Alerts />
+      <Popup />
       <Header />
       <div className={styles.child}>
         {children}

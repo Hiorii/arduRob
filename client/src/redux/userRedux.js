@@ -66,6 +66,17 @@ export const signUp = (formData, history) => async (dispatch) => {
   }
 };
 
+export const userUpdate = (userData, history) => async(dispatch) => {
+  try {
+    const {data} = await axios.put(`${API_URL}/user/data`, userData);
+    dispatch(authUser({data:data}));
+    history.push('/login');
+    window.location.reload();
+  } catch (err) {
+    dispatch(failFetch(err));
+  }
+};
+
 /* reducer */
 export const reducer = (statePart = initialState, action = {}) => {
   switch (action.type) {

@@ -84,3 +84,23 @@ exports.signUp = async(req,res) => {
         res.status(500).json({message: err});
     }
 }
+
+exports.updateUserData = async(req,res) => {
+    const {email, country, adress, city, postCode, telephone, token} = req.body;
+
+    try {
+        const currentUser = await User.findOne({email});
+        if(!email) res.status(404).json({message: "User not found..."});
+        else {
+            currentUser.country = country;
+            currentUser.adress = adress;
+            currentUser.city = city;
+            currentUser.postCode = postCode;
+            currentUser.telephone = telephone;
+            await currentUser.save();
+            res.json({result:currentUser, token});
+        }
+    } catch (err) {
+        res.status(500).json({message: err});
+    }
+};
