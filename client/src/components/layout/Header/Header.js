@@ -5,6 +5,7 @@ import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../../../context/userContext';
 import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
+import {AiOutlineUser} from 'react-icons/ai';
 import {cartTotalQuantity} from '../../../redux/cartRedux';
 
 const Header = () => {
@@ -15,6 +16,7 @@ const Header = () => {
   const [activeAbout, setActiveAbout] = useState(false);
   const [activeContact, setActiveContact] = useState(false);
   const [cartTotal, setCartTotal] = useState('0');
+  const [showMenu, setShowMenu] = useState(false);
   const currentUser = useContext(UserContext).user;
   const dispatch = useDispatch();
   const cartTotalValue = useSelector(cartTotalQuantity);
@@ -25,6 +27,10 @@ const Header = () => {
   const userLogout = () => {
     dispatch(logoutUser());
     window.location.reload();
+  };
+
+  const showMenuUser = () => {
+    setShowMenu(!showMenu);
   };
 
   useEffect(()=> {
@@ -56,8 +62,8 @@ const Header = () => {
       setActiveAbout(false);
       setActiveContact(false);
     }
+    setShowMenu(false);
   },[location]);
-
   return (
     <div className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>
@@ -76,15 +82,43 @@ const Header = () => {
           <div className={styles.totalQuantity}>
             {cartTotal}
           </div>
-          <Link to='/login'>
+          <div className={styles.ico} onClick={showMenuUser}>
             <BiUserCircle />
-          </Link>
-          {currentUser?.token &&
-            <p onClick={()=>userLogout()}>Logout</p>
-          }
-          <Link to='/cart'>
-            <BiCartAlt />
-          </Link>
+          </div>
+          <div className={showMenu ? styles.user : styles.userActive}>
+            <div className={styles.userData}>
+              <div className={styles.loUser}>
+                {!currentUser?.token &&
+                <>
+                  <div className={styles.userCommon}>
+                    <AiOutlineUser /> User Panel
+                  </div>
+                  <Link to='/login'>
+                    <p>Login</p>
+                  </Link>
+                </>
+                }
+              </div>
+              <div className={styles.loUser}>
+                {currentUser?.token &&
+                <>
+                  <div className={styles.userCommon}>
+                    <AiOutlineUser />  {currentUser.result.firstName}
+                  </div>
+                  <Link to='/login'>
+                    <p>Your profile</p>
+                  </Link>
+                  <p onClick={()=>userLogout()}>Logout</p>
+                </>
+                }
+              </div>
+            </div>
+          </div>
+          <div className={styles.ico}>
+            <Link to='/cart'>
+              <BiCartAlt />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

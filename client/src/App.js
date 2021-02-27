@@ -12,6 +12,7 @@ import Cart from './components/views/Cart/Cart';
 import Checkout from './components/views/Checkout/Checkout';
 import User from './components/views/User/User';
 import SuccessCheckout from './components/views/Checkout/SuccessCheckout/SuccessCheckout';
+import UserProfile from './components/views/User/UserProfile/UserProfile';
 
 const App = () => {
   return (

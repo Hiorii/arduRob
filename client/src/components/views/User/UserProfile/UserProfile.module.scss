@@ -1,0 +1,98 @@
+@import '../../../../styles/settings';
+
+.root {
+  @include flex(center, center);
+  flex-wrap: wrap;
+  width: 100%;
+  .basicUser{
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    width: 90%;
+    background: $primary-white;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    h1 {
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 3rem;
+      span {
+        color: $main-btn;
+        font-size: 3.2rem;
+      }
+    }
+    .basicEmail {
+      font-size: 1.3rem;
+      width: 100%;
+    }
+    div {
+      @include flex(center, center);
+
+      font-size: 1.3rem;
+      color: red;
+      margin-top: 3rem;
+      width: 100%;
+      svg {
+        margin-right: 2rem;
+        font-size: 2rem;
+      }
+      svg:last-of-type {
+        margin-left: 2rem;
+      }
+    }
+  }
+  .dataUser {
+    margin-top: 2rem;
+    background: $primary-white;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    width: 90%;
+    padding: 2rem;
+    h1 {
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 2.3rem;
+    }
+    .dataMain {
+      width: 100%;
+      @include flex(space-between, center);
+      flex-wrap: wrap;
+      .dataContainer {
+        width: 47%;
+        @include flex(space-between, center);
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+        .desc {
+          text-transform: uppercase;
+          width: 100%;
+          margin-bottom: .5rem;
+          color: $main-btn;
+          font-size: 1.4rem;
+          font-weight: 800;
+        }
+        .value {
+          width: 100%;
+          font-size: 1.2rem;
+          font-weight: 800;
+        }
+        .valueWarning {
+          color: red;
+          font-size: 1.3rem;
+          @include flex(flex-start, center);
+          svg {
+            margin-left: 1rem;
+            font-size: 2rem;
+          }
+        }
+        .change {
+          width: 100%;
+          margin-top: .5rem;
+          text-transform: uppercase;
+          letter-spacing: .3rem;
+          cursor: pointer;
+          color: $primary-light;
+        }
+      }
+    }
+  }
+}

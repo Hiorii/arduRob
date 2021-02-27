@@ -115,7 +115,7 @@ const User = () => {
           </div>
         </div>
       }
-      {currentUser?.token && <UserProfile />}
+      {currentUser?.token && <UserProfile user={currentUser}/>}
     </div>
   );
 };

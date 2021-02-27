@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ProductBox from '../ProductBox/ProductBox';
 
 const FeaturedProduct = ({title, products}) => {
-  const productsList = products.data;
+  const productsList = products?.data;
   const featuredProducts = productsList && productsList.filter(product => product.featured === true);
   return (
     <div className={styles.root}>
