@@ -7,20 +7,27 @@
     font-size: 1.8rem;
     margin: 2rem 0;
   }
-  p {
-    font-size: 1.3rem;
-    margin: .8rem 0;
-    cursor: pointer;
-    &:hover {
-      font-weight: 800;
-      color: $main-btn;
-    }
-  }
   .category {
     border-bottom: 1px solid $second-font;
     padding-bottom: 2rem;
+    margin-left: 1rem;
+    .cat {
+      font-size: 1.3rem;
+      margin: .8rem 0;
+      font-weight: 800;
+    }
+    .subCat {
+      font-size: 1.3rem;
+      margin: .8rem 0 .8rem 1rem;
+      cursor: pointer;
+      &:hover {
+        font-weight: 800;
+        color: $main-btn;
+      }
+    }
   }
   .sortBy {
-
+    padding-bottom: 2rem;
+    margin-left: 1rem;
   }
 }

@@ -5,7 +5,7 @@ import Filters from '../Filters/Filters';
 import ProductBox from '../ProductBox/ProductBox';
 import {Link} from 'react-router-dom';
 
-const ProductList = ({products, categories}) => {
+const ProductList = ({products, categories, subCategories}) => {
   const [allProducts, setAllProducts] = useState([]);
   const [productsPerPage, setProductsPerPage] = useState([]);
   const [pageNumbers, setPageNumbers] = useState([]);
@@ -14,6 +14,7 @@ const ProductList = ({products, categories}) => {
   const [pageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+  const [byCategory, setByCategory] = useState([]);
 
   const changePage = (e) => {
     setCurrentPage(e.target.id);
@@ -73,7 +74,13 @@ const ProductList = ({products, categories}) => {
   // }
 
   useEffect(()=> {
-    if(products.data){
+    if(byCategory.length > 0) {
+      byCategory && setAllProducts(byCategory);
+      const indexOfLastItem = currentPage * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const currentItems = byCategory.slice(indexOfFirstItem, indexOfLastItem);
+      byCategory && setProductsPerPage(currentItems);
+    } else if(products.data){
       if(products.data.length > 0) {
         products.data && setAllProducts(products.data);
         const indexOfLastItem = currentPage * itemsPerPage;
@@ -82,7 +89,7 @@ const ProductList = ({products, categories}) => {
         products.data && setProductsPerPage(currentItems);
       }
     }
-  },[products, currentPage, itemsPerPage]);
+  },[products, currentPage, itemsPerPage, byCategory]);
 
   useEffect(()=> {
     pageNumberSetter();
@@ -96,7 +103,7 @@ const ProductList = ({products, categories}) => {
           <p>ArduRob products for great projects.</p>
         </div>
         <div className={styles.filters}>
-          <Filters categories={categories} products={products}/>
+          <Filters categories={categories} products={products} subCategories={subCategories} setByCategory={setByCategory} setCurrentPage={setCurrentPage}/>
         </div>
         <div className={styles.productList}>
           {productsPerPage && productsPerPage.map((product,index) => {
@@ -148,6 +155,10 @@ const ProductList = ({products, categories}) => {
 ProductList.propTypes = {
   categories: PropTypes.object,
   products: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  subCategories: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),

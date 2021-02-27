@@ -4,7 +4,7 @@ exports.getAll = async (req,res)=> {
     try {
         const result = await Product
             .find()
-            .populate('subCategoryId');
+            .populate('subCategoryId')
         if(!result) res.status(404).json({message: 'Not found...'});
         else res.json(result);
     } catch (err) {

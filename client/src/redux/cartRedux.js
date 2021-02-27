@@ -64,7 +64,7 @@ export const reducer = (statePart = initialState, action = {}) => {
       const products = JSON.parse(localStorage.getItem('products')).data;
       const updatedItems = cartItems.map(product => {
         if(product._id === action.payload) {
-          if(product.cartQuantiy > 0) {
+          if(product.cartQuantiy > 1) {
             product.cartQuantiy = product.cartQuantiy - 1;
             const newItems = products.map(item => {
               if(item._id === product._id) {
