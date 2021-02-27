@@ -16,6 +16,13 @@
       margin: .8rem 0;
       font-weight: 800;
     }
+    .cat:first-of-type {
+      cursor: pointer;
+      &:hover {
+        font-weight: 800;
+        color: $main-btn;
+      }
+    }
     .subCat {
       font-size: 1.3rem;
       margin: .8rem 0 .8rem 1rem;
@@ -29,5 +36,17 @@
   .sortBy {
     padding-bottom: 2rem;
     margin-left: 1rem;
+    select {
+      margin-top: 2rem;
+      height: 3rem;
+      width: 12rem;
+      font-size: 1.2rem;
+      outline: none;
+      cursor: pointer;
+      option {
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+    }
   }
 }

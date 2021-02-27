@@ -15,6 +15,7 @@ const ProductList = ({products, categories, subCategories}) => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
   const [byCategory, setByCategory] = useState([]);
+  const [productInitializer, setProductInitializer] = useState(false);
 
   const changePage = (e) => {
     setCurrentPage(e.target.id);
@@ -74,6 +75,7 @@ const ProductList = ({products, categories, subCategories}) => {
   // }
 
   useEffect(()=> {
+    console.log('wow');
     if(byCategory.length > 0) {
       byCategory && setAllProducts(byCategory);
       const indexOfLastItem = currentPage * itemsPerPage;
@@ -89,7 +91,7 @@ const ProductList = ({products, categories, subCategories}) => {
         products.data && setProductsPerPage(currentItems);
       }
     }
-  },[products, currentPage, itemsPerPage, byCategory]);
+  },[products, currentPage, itemsPerPage, byCategory, productInitializer]);
 
   useEffect(()=> {
     pageNumberSetter();
@@ -103,7 +105,7 @@ const ProductList = ({products, categories, subCategories}) => {
           <p>ArduRob products for great projects.</p>
         </div>
         <div className={styles.filters}>
-          <Filters categories={categories} products={products} subCategories={subCategories} setByCategory={setByCategory} setCurrentPage={setCurrentPage}/>
+          <Filters categories={categories} products={products} subCategories={subCategories} setByCategory={setByCategory} setCurrentPage={setCurrentPage} setProductInitializer={setProductInitializer} productInitializer={productInitializer}/>
         </div>
         <div className={styles.productList}>
           {productsPerPage && productsPerPage.map((product,index) => {
