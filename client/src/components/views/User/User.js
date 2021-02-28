@@ -40,21 +40,32 @@ const User = () => {
       for (let key in formData) {
         if (formData[key] === '') {
           alert.dangerAlert(`${key} field can not be empty`);
-          setTimeout(()=> {alert.closeAlert();},3000);
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.firstName.length < 2 || formData.lastName.length < 2) {
+          alert.warningAlert('First name or last name length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.telephone.length < 5) {
+          alert.warningAlert('Telephone length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.email.length < 5 || !formData.email.includes('@')) {
+          alert.warningAlert('To short or incorrect email form');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.password.length < 6) {
+          alert.warningAlert('Password must have at least 6 chars');
+          setTimeout(()=> {alert.closeAlert();},4000);
         } else if(formData.password !== formData.confirmPassword) {
           alert.dangerAlert(`Passwords are not the same`);
-          setTimeout(()=> {alert.closeAlert();},3000);
+          setTimeout(()=> {alert.closeAlert();},4000);
         } else {
           await dispatch(signUp(formData, history));
           isUserFetch?.error && alert.dangerAlert('User with given email already exist');
-          setTimeout(()=> {alert.closeAlert();},3000);
+          setTimeout(()=> {alert.closeAlert();},4000);
         }
       }
     } else if(isLogin) {
       if(formData.email === '') {
         alert.dangerAlert('E-mail field can not be empty');
         setTimeout(()=> {alert.closeAlert();},2000);
-
       } else if(formData.password === '') {
         alert.dangerAlert('Password field can not be empty');
         setTimeout(()=> {alert.closeAlert();},2000);

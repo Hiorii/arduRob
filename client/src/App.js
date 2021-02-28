@@ -22,7 +22,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route exact path='/shop' component={Shop} />
-            <Route exact path='/shop/product/:id' component={ProductPage} />
+            <Route exact path='/shop/product/:id' render={(props) => <ProductPage {...props} keyProp={new Date().getTime()} key={new Date().getTime()}/>} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/cart/checkout' component={Checkout} />
             <Route exact path='/cart/checkout/success' component={SuccessCheckout} />

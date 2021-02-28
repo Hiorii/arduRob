@@ -58,8 +58,12 @@ export const signUp = (formData, history) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${API_URL}/signup`, formData);
 
-    dispatch(authUser(data));
-    history.push('/');
+    dispatch(authUser({data: data}));
+    if(history.location.pathname === '/login') {
+      history.push('/');
+    } else {
+      history.push(history.location.pathname);
+    }
     window.location.reload();
   } catch (err) {
     dispatch(failFetch(err));
@@ -91,7 +95,7 @@ export const reducer = (statePart = initialState, action = {}) => {
       return statePart;
     }
     case LOGOUT: {
-      localStorage.clear();
+      localStorage.removeItem('profile');
 
       return { ...statePart, users: null};
     }

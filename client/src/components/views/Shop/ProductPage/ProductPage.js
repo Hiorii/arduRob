@@ -4,8 +4,6 @@ import ProductMain from './ProductMain/ProductMain';
 import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 import AdvertOne from './AdvertOne/AdvertOne';
 import Feedback from './Feedback/Feedback';
-import {useSelector} from 'react-redux';
-import {getAllProducts} from '../../../../redux/productRedux';
 
 const ProductPage = () => {
   const products = JSON.parse(localStorage.getItem('products'));

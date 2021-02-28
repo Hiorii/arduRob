@@ -15,7 +15,7 @@ const Header = () => {
   const [activeShop, setActiveShop] = useState(false);
   const [activeAbout, setActiveAbout] = useState(false);
   const [activeContact, setActiveContact] = useState(false);
-  const [cartTotal, setCartTotal] = useState('0');
+  const [cartTotal, setCartTotal] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const currentUser = useContext(UserContext).user;
   const dispatch = useDispatch();
@@ -37,6 +37,8 @@ const Header = () => {
     if(cartTotalValue?.length>0) {
       const total = cartTotalValue.reduce((a,b)=> a + b);
       setCartTotal(total);
+    } else {
+      setCartTotal(0);
     }
     window.addEventListener('scroll', headerStyles);
     return () => {

@@ -58,13 +58,25 @@ const Checkout = () => {
         if (formData[key] === '') {
           alert.dangerAlert(`${key} field can not be empty`);
           setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.firstName.length < 2 || formData.lastName.length < 2) {
+          alert.warningAlert('First name or last name length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.telephone.length < 5) {
+          alert.warningAlert('Telephone length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.email.length < 5 || !formData.email.includes('@')) {
+          alert.warningAlert('To short or incorrect email form');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(formData.password.length < 6) {
+          alert.warningAlert('Password must have at least 6 chars');
+          setTimeout(()=> {alert.closeAlert();},4000);
         } else if(formData.password !== formData.confirmPassword) {
           alert.dangerAlert(`Passwords are not the same`);
           setTimeout(()=> {alert.closeAlert();},4000);
         } else {
           await dispatch(signUp(formData, history));
           isUserFetch?.error && alert.dangerAlert('User with given email already exist');
-          setTimeout(()=> {alert.closeAlert();},4000);
+          setTimeout(()=> {alert.closeAlert();},6000);
         }
       }
     } else if(isLogin) {
@@ -84,6 +96,15 @@ const Checkout = () => {
       for (let key in guestData) {
         if (guestData[key] === '') {
           alert.dangerAlert(`${key} field can not be empty`);
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(guestData.firstName.length < 2 || guestData.lastName.length < 2) {
+          alert.warningAlert('First name or last name length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(guestData.telephone.length < 5) {
+          alert.warningAlert('Telephone length is to short');
+          setTimeout(()=> {alert.closeAlert();},4000);
+        } else if(guestData.email.length < 5 || !guestData.email.includes('@')) {
+          alert.warningAlert('To short or incorrect email form');
           setTimeout(()=> {alert.closeAlert();},4000);
         } else if (guestData.email !== '' && guestData.firstName !== '' && guestData.lastName !== '' && guestData.adress !== '' && guestData.postCode !== '' && guestData.city !== '' && guestData.country !== '' && guestData.telephone !== '') {
           setUser({
@@ -165,26 +186,28 @@ const Checkout = () => {
         <h1>Checkout</h1>
       </div>
       <div className={styles.data}>
+        {!user &&
         <div className={styles.dataType}>
           <p
-            onClick={()=>activeLogin()}
+            onClick={() => activeLogin()}
             className={isLogin ? styles.active : ''}
           >
             Login
           </p>
           <p
-            onClick={()=>activeRegister()}
+            onClick={() => activeRegister()}
             className={isRegister ? styles.active : ''}
           >
             Register
           </p>
           <p
-            onClick={()=>activeGuest()}
-            className={isGuest? styles.active : ''}
+            onClick={() => activeGuest()}
+            className={isGuest ? styles.active : ''}
           >
             Guest
           </p>
         </div>
+        }
         <form onSubmit={(e)=>handleSubmit(e)}>
           {!user &&
             <div className={styles.form}>

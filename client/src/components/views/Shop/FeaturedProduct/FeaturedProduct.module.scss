@@ -18,10 +18,10 @@
     }
   }
   .featureProductsContainer {
-    margin: 3rem;
-    @include flex(space-around,center);
-    overflow: scroll;
-    overflow-y: hidden;
+    margin: 1rem;
+    flex: 1;
+    display: flex;
+    overflow: auto;
     .featureProductsContainerInner {
       margin-bottom: 3rem;
       a {

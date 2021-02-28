@@ -209,22 +209,61 @@
             }
           }
         }
+        .couponCont {
+          @include flex(flex-start, center);
+          width: 100%;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          padding: 2rem 0;
+          form {
+            width: 100%;
+            @include flex(flex-start, center);
+            input {
+              width: 50%;
+              height: 3.5rem;
+              outline: none;
+              font-size: 1.5rem;
+              padding-left: 1rem;
+            }
+            button {
+              cursor: pointer;
+              width: 10rem;
+              font-size: 1.5rem;
+              text-decoration: none;
+              font-weight: 800;
+              height: 3.5rem;
+              background: $main-btn;
+              color: $main-font;
+              transition: $main-transition;
+              border: none;
+              margin-left: 1rem;
+              outline: none;
+              &:hover {
+                background: $main-font;
+                color: $main-btn;
+                border: none;
+              }
+            }
+          }
+        }
         .final {
           width: 100%;
           background: $main-font;
           border: 1px solid rgba(0,0,0,0.2);
           margin: 1rem 0;
-          @include flex(center, center);
+          @include flex(flex-end, center);
           flex-wrap: wrap;
-          div {
-            @include flex(flex-end,center);
-            width: 100%;
-            p {
-              margin: .5rem 2rem;
-              font-size: 1.2rem;
-            }
-            p:first-of-type {
-              font-weight: 800;
+          .finalInner {
+            width: auto;
+            div {
+              @include flex(space-between,center);
+              width: 100%;
+              p {
+                margin: .5rem 2rem;
+                font-size: 1.2rem;
+              }
+              p:first-of-type {
+                font-weight: 800;
+              }
             }
           }
         }

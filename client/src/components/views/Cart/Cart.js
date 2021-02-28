@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from './Cart.module.scss';
 import {Link} from 'react-router-dom';
@@ -8,11 +8,16 @@ import {BsPlus, BsArrowRightShort} from 'react-icons/bs';
 import Button from '../../common/Button/Button';
 import {handleAddQuantity, handleMinusQuantity, handleClear} from '../../../redux/cartRedux';
 import {getAllProducts} from '../../../redux/productRedux';
+import {AlertContext} from '../../../context/alertContext';
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState();
   const [handleChange, setHandleChange] = useState(true);
+  const [isCouponVisible, setIsCouponVisible] = useState(false);
+  const [coupon, setCoupon] = useState('');
+  const [couponDiscount, setCouponDiscount] = useState(0);
   const dispatch = useDispatch();
+  const alert = useContext(AlertContext);
 
   const addQuantity = (id) => {
     setHandleChange(!handleChange);
@@ -29,10 +34,38 @@ const Cart = () => {
     dispatch(handleClear(id));
   };
 
-  const totalPrice = () => {
+  const handleCoupon = (e) => {
+    e.preventDefault();
+    if(coupon === 'arduRob') {
+      setCouponDiscount(20);
+      alert.successAlert('Couple code had been added');
+      setTimeout(()=> {
+        alert.closeAlert();
+      },3000);
+    } else {
+      setCouponDiscount(0);
+      alert.dangerAlert('Couple code does not exist');
+      setTimeout(()=> {
+        alert.closeAlert();
+      },3000);
+    }
+  };
+
+  const totalSub = () => {
     const prices = cartProducts.map(product => product.price * product.cartQuantiy);
     const total = prices.reduce((a,b)=> a + b);
     return total;
+  };
+
+  const totalPrice = () => {
+    const price = totalSub();
+    if(couponDiscount === 0) {
+      return price;
+    } else {
+      let discount = price * (couponDiscount/100);
+      let pricePromo =  price - discount;
+      return pricePromo;
+    }
   };
 
   useEffect(()=> {
@@ -61,7 +94,6 @@ const Cart = () => {
                   <td>product name</td>
                   <td>categoty</td>
                   <td>quantity</td>
-                  <td>special discount</td>
                   <td>total</td>
                 </tr>
               </thead>
@@ -91,7 +123,6 @@ const Cart = () => {
                           </div>
                         </div>
                       </td>
-                      <td>special discount</td>
                       <td>€ {parseFloat(product.price * product.cartQuantiy).toFixed(2)}</td>
                     </tr>
                   );
@@ -104,23 +135,33 @@ const Cart = () => {
               <div className={styles.item}>
                 <p>use coupon code</p>
                 <span>
-                  <button>
+                  <button onClick={()=>setIsCouponVisible(!isCouponVisible)}>
                     <BsArrowRightShort/>
                   </button>
                 </span>
               </div>
+              {isCouponVisible &&
+                <div className={styles.couponCont}>
+                  <form onSubmit={e=>handleCoupon(e)}>
+                    <input type="text" placeholder='Type arduRob for 20% discount' onChange={(e)=>setCoupon(e.target.value)}/>
+                    <button type='submit'>Submit</button>
+                  </form>
+                </div>
+              }
               <div className={styles.final}>
-                <div>
-                  <p>Sub-Total:</p>
-                  <p>€ {totalPrice()}</p>
-                </div>
-                <div>
-                  <p>Discount Value</p>
-                  <p>price</p>
-                </div>
-                <div>
-                  <p>Total:</p>
-                  <p>total</p>
+                <div className={styles.finalInner}>
+                  <div>
+                    <p>Sub-Total:</p>
+                    <p>€ {parseFloat(totalSub()).toFixed(2)}</p>
+                  </div>
+                  <div>
+                    <p>Discount Value:</p>
+                    <p>{couponDiscount} %</p>
+                  </div>
+                  <div>
+                    <p>Total:</p>
+                    <p>€ {parseFloat(totalPrice()).toFixed(2)}</p>
+                  </div>
                 </div>
               </div>
               <div className={styles.btnContainer}>

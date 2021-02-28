@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import styles from './FeaturedProduct.module.scss';
 import PropTypes from 'prop-types';
 import ProductBox from '../ProductBox/ProductBox';
@@ -7,6 +7,8 @@ import ProductBox from '../ProductBox/ProductBox';
 const FeaturedProduct = ({title, products}) => {
   const productsList = products?.data;
   const featuredProducts = productsList && productsList.filter(product => product.featured === true);
+  const history = useHistory();
+
   return (
     <div className={styles.root}>
       <div className={styles.container}>
