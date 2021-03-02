@@ -42,3 +42,67 @@
     font-size: 1.2rem;
   }
 }
+@media (max-width: 479px) {
+  .root {
+    .googleCont {
+      .googleBtn {
+        font-size: 1.1rem;
+        margin: 0;
+        svg {
+          font-size: 1.7rem;
+          margin: 0 1rem;
+        }
+      }
+    }
+    .or {
+      font-size: 1.2rem;
+      margin: 2rem 0;
+      fieldset {
+        padding: 0 6rem;
+        legend {
+          padding: 0 1.3rem;
+        }
+      }
+    }
+    label {
+      font-size: 1.2rem;
+    }
+    input {
+      height: 3rem;
+      padding-left: 1rem;
+      font-size: 1rem;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .googleCont {
+      .googleBtn {
+        font-size: 1.1rem;
+        margin: 0;
+        svg {
+          font-size: 1.7rem;
+          margin: 0 1rem;
+        }
+      }
+    }
+    .or {
+      font-size: 1.2rem;
+      margin: 2rem 0;
+      fieldset {
+        padding: 0 6rem;
+        legend {
+          padding: 0 1.3rem;
+        }
+      }
+    }
+    label {
+      font-size: 1.2rem;
+    }
+    input {
+      height: 3rem;
+      padding-left: 1rem;
+      font-size: 1rem;
+    }
+  }
+}

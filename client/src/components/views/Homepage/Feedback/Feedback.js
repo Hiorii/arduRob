@@ -29,7 +29,6 @@ const Feedback = () => {
       {currentUser.map((users, index) => {
         return (
           <div key={index} className={styles.feedback}>
-            <div className={styles.quote}><BsChatQuote /></div>
             <div className={styles.feedbackText}>{users.text}</div>
             <div className={styles.feedbackFoto}>
               <img src={users.image} alt={users.name}/>

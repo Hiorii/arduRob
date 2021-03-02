@@ -3,8 +3,10 @@
 .root {
   background: $main-font;
   width: 25rem;
+  height: auto;
   .container {
     width: 100%;
+    height: 100%;
     &:hover {
       background: $primary-white;
     }
@@ -39,6 +41,98 @@
           transition: $main-transition;
           &:hover {
             background: $main-btn;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .root {
+    width: 15rem;
+    .container {
+      margin-top: 1rem;
+      .photo {
+        @include flex(center,center);
+        width: auto;
+        height: 10rem;
+        img {
+          width: 10rem;
+          margin-bottom: 1rem;
+        }
+      }
+      .data {
+        height: 6rem;
+        @include flex(center, center);
+        flex-wrap: wrap;
+        margin-left: 1rem;
+        h3 {
+          width: 100%;
+          height: 3rem;
+          font-size: 1.3rem;
+          margin: 0;
+        }
+        div {
+          @include flex(space-between, center);
+          width: 100%;
+          margin: 1rem 0 0 0;
+          p {
+            font-size: 1.5rem;
+            font-weight: 800;
+          }
+          svg {
+            font-size: 2rem;
+            transition: $main-transition;
+            &:hover {
+              background: $main-btn;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    width: 15rem;
+    .container {
+      margin-top: 1rem;
+      .photo {
+        @include flex(center,center);
+        width: auto;
+        height: 10rem;
+        img {
+          width: 10rem;
+          margin-bottom: 1rem;
+        }
+      }
+      .data {
+        height: 6rem;
+        @include flex(center, center);
+        flex-wrap: wrap;
+        margin-left: 1rem;
+        h3 {
+          width: 100%;
+          height: 3rem;
+          font-size: 1.3rem;
+          margin: 0;
+        }
+        div {
+          @include flex(space-between, center);
+          width: 100%;
+          margin: 1rem 0 0 0;
+          p {
+            font-size: 1.5rem;
+            font-weight: 800;
+          }
+          svg {
+            font-size: 2rem;
+            transition: $main-transition;
+            &:hover {
+              background: $main-btn;
+            }
           }
         }
       }

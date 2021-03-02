@@ -112,7 +112,7 @@ const ProductList = ({products, categories, subCategories}) => {
             return (
               <div
                 key={index}
-                className={styles.featureProductsContainerInner}
+                className={styles.productsContainerInner}
               >
                 <Link
                   to={{

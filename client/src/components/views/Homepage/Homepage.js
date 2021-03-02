@@ -10,7 +10,7 @@ const Homepage = () => {
       <div className={styles.banner}>
         <Banner />
       </div>
-      <div className={styles.banner}>
+      <div className={styles.feedback}>
         <Feedback />
       </div>
       <div className={styles.us}>

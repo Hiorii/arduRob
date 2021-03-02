@@ -72,3 +72,75 @@
     }
   }
 }
+@media (max-width: 479px) {
+  .root {
+    .container {
+      .title {
+        h1 {
+          font-size: 2.2rem;
+        }
+        p {
+          font-size: 1.2rem;
+        }
+      }
+      .filters {
+        width: 100%;
+        max-width: none;
+      }
+      .productList {
+        width: 100%;;
+        margin-top: 2rem;
+        .productsContainerInner {
+          height: 23rem;
+        }
+        .pagesNumbers {
+          margin-top: 6rem;
+          width: 100%;
+          @include flex(center,center);
+          li {
+            font-size: 1rem;
+          }
+          .btns {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .container {
+      .title {
+        h1 {
+          font-size: 2.2rem;
+        }
+        p {
+          font-size: 1.2rem;
+        }
+      }
+      .filters {
+        width: 100%;
+        max-width: none;
+      }
+      .productList {
+        width: 100%;;
+        margin-top: 2rem;
+        .productsContainerInner {
+          height: 23rem;
+        }
+        .pagesNumbers {
+          margin-top: 6rem;
+          width: 100%;
+          @include flex(center,center);
+          li {
+            font-size: 1rem;
+          }
+          .btns {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

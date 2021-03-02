@@ -7,6 +7,7 @@ import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
 import {AiOutlineUser} from 'react-icons/ai';
 import {cartTotalQuantity} from '../../../redux/cartRedux';
+import Burger from '../Burger/Burger';
 
 const Header = () => {
   const history = useHistory();
@@ -67,15 +68,18 @@ const Header = () => {
     setShowMenu(false);
   },[location]);
   return (
-    <div className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
+    <div id='root' className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>
+        <div className={styles.burger}>
+          <Burger pageWrapId={'list'} outerContainerId={'root'} />
+        </div>
         <div className={styles.logo}>
           <Link to='/'>
             <img src='/images/logo.png' alt='logo'/>
             <span>ArduRob</span>
           </Link>
         </div>
-        <div className={styles.list}>
+        <div id='list' className={styles.list}>
           <Link to='/shop' className={activeShop ? styles.active : ''}>Shop</Link>
           <Link to='/' className={activeAbout ? styles.active : ''}>About</Link>
           <Link to='/' className={activeContact ? styles.active : ''}>Contact</Link>

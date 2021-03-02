@@ -6,22 +6,24 @@ const WhyUs = () => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.img}>
-          <img src='/images/whyus2.png' alt='whyus_phono_share'/>
-        </div>
-        <div className={styles.content}>
-          <span>Why us?</span>
-          <h1>Reach every single Arduino project you want</h1>
-          <span>Imagination is your only limit</span>
-          <p>ArduRob is a perfect place to start if: </p>
-          <ul>
-            <li>you want to buy some finished project to play in home</li>
-            <li>you are planning to build your own Arduino project from beginning</li>
-            <li>you already start some project and stuck with next steps</li>
-          </ul>
-          <p>Or do you maybe miss some parts? For this check out our shop:</p>
-          <div className={styles.btn}>
-            <Button data='Shop Now!' url='/'/>
+        <div className={styles.faceContent}>
+          <div className={styles.img}>
+            <img src='/images/whyus2.png' alt='whyus_phono_share'/>
+          </div>
+          <div className={styles.content}>
+            <span>Why us?</span>
+            <h1>Reach every single Arduino project you want</h1>
+            <span>Imagination is your only limit</span>
+            <p>ArduRob is a perfect place to start if: </p>
+            <ul>
+              <li>you want to buy some finished project to play in home</li>
+              <li>you are planning to build your own Arduino project from beginning</li>
+              <li>you already start some project and stuck with next steps</li>
+            </ul>
+            <p>Or do you maybe miss some parts? For this check out our shop:</p>
+            <div className={styles.btn}>
+              <Button data='Shop Now!' url='/'/>
+            </div>
           </div>
         </div>
         <div className={styles.notSure}>

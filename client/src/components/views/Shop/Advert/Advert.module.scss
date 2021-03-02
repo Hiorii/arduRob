@@ -1,40 +1,103 @@
 @import '../../../../styles/settings';
 
 .root {
-  width: 70%;
-  position: relative;
-  .titleCont {
-    background: $primary;
-    height: 23rem;
+  width: 90%;
+  @include flex(center,center);
+  height: 100%;
+  .container {
     width: 100%;
-    margin-bottom: 8rem;
-    padding-top: 3rem;
-    @include flex(center,center);
-    flex-wrap: wrap;
-    h1 {
-      font-size: 4rem;
-      color: $main-font;
+    .titleCont {
+      padding: 10rem 0;
+      background: $primary;
+      height: auto;
       width: 100%;
-      text-align: center;
-      margin-bottom: 10rem;
-    }
-    p {
-      position: absolute;
-      top: 14rem;
-      left: 12%;
-      font-size: 3rem;
-      color: $main-btn;
-      span {
-        font-size: 3.1rem;
-        font-weight: 600;
+      margin-bottom: 8rem;
+      padding-top: 3rem;
+      @include flex(center,center);
+      flex-wrap: wrap;
+      h1 {
+        font-size: 4rem;
+        color: $main-font;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .movingText {
+        height: 3rem;
+        width: 40rem;
+        text-align: center;
+        p {
+          font-size: 3rem;
+          color: $main-btn;
+          span {
+            font-size: 3.1rem;
+            font-weight: 600;
+          }
+        }
       }
     }
   }
-  img {
-    height: 20rem;
-    position: absolute;
-    top: 0;
-    left: 91%;
+  .imgContainer {
+    height: 100%;
+    margin-bottom: 7rem;
+    margin-left: -5.4rem;
+    img {
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .root {
+    .container {
+      margin-bottom: 1rem;
+      .titleCont {
+        padding: 2rem 0 1rem 0;
+        h1 {
+          font-size: 2rem;
+        }
+        .movingText {
+          height: 3rem;
+          width: 40rem;
+          text-align: center;
+          p {
+            font-size: 1.5rem;
+            span {
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+    .imgContainer {
+      display: none;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .container {
+      .titleCont {
+        padding: 1rem 0;
+        h1 {
+          font-size: 2rem;
+        }
+        div {
+          height: 3rem;
+          width: 40rem;
+          text-align: center;
+          p {
+            font-size: 1.5rem;
+            span {
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+    .imgContainer {
+      display: none;
+    }
   }
 }
 

@@ -7,7 +7,7 @@
   .content {
     width: 23rem;
     color: white;
-    margin: 20rem 5rem 10rem;
+    margin: 12rem 2rem 10rem 5rem;
     span {
       color: $main-btn;
       text-transform: uppercase;
@@ -24,13 +24,58 @@
     }
   }
   .images {
-    width: 40rem;
-    position: relative;
+    width: 30rem;
+    height: auto;
+    margin: 4rem 2rem 0 0;
+    @include flex(center, center);
     img {
-      position: absolute;
-      width: 45rem;
-      top: -4rem;
-      left: -6rem;
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 479px) {
+  .root {
+    flex-wrap: wrap;
+    .content {
+      width: 100%;
+      margin: 8rem 2rem 2rem 2rem;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+    .images {
+      width: 40rem;
+      height: auto;
+      margin: 0 2rem 7rem 2rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    flex-wrap: wrap;
+    .content {
+      width: 100%;
+      margin: 8rem 2rem 2rem 2rem;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+    .images {
+      width: 40rem;
+      height: auto;
+      margin: 0 2rem 7rem 2rem;
+      img {
+        width: 100%;
+      }
     }
   }
 }

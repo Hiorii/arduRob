@@ -1,0 +1,106 @@
+@import '../../../styles/settings';
+
+.menuBar {
+  overflow: hidden;
+  outline: none;
+  top: 0;
+}
+/* Individual item */
+.bm-item {
+  /* Our sidebar item styling */
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
+}
+
+/* Change color on hover */
+.bm-item:hover {
+  color: white;
+}
+
+/* The rest copied directly from react-burger-menu docs */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 1.5rem;
+  top: 2.2rem;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: $main-btn;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  top: 2rem !important;
+  right: 2rem !important;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+}
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+  width: 2rem !important;
+  left: -1rem !important;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $primary-white;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  overflow: hidden !important;
+  outline: none;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: $primary-white;
+}
+.list {
+  margin-top: 1rem;
+  display: flex !important;
+  flex-wrap: wrap;
+  outline: none;
+  a {
+    width: 100%;
+    text-decoration: none;
+    color: $second-font;
+    font-size: 3.2rem;
+    margin: 1rem 0;
+    transition: $main-transition;
+    &:hover {
+      color: $main-btn;
+    }
+  }
+  .active {
+    color: $main-btn;
+  }
+}
+.logo {
+  margin-top: 1rem;
+  outline: none;
+  a {
+    @include flex(flex-start,center);
+    text-decoration: none;
+    img {
+      height: 7rem;
+      width: 6.5rem;
+    }
+    span {
+      font-size: 4.2rem;
+      color: $second-font;
+      margin-left: 1rem;
+    }
+  }
+}

@@ -7,6 +7,10 @@
   width: 90%;
   background: $primary-white;
   box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+  max-width: 1715px;
+  .smallSizeScreen {
+    display: none;
+  }
   .navigation {
     width: 100%;
     margin: 2rem 0 0 5rem;
@@ -16,6 +20,7 @@
     }
     p {
       @include flex(flex-start, center);
+      flex-wrap: wrap;
       font-size: 1.2rem;
       color: gray;
       svg {
@@ -135,48 +140,6 @@
       .quantity {
         @include flex(space-between, center);
         width: 100%;
-        .inputContainer {
-          @include flex(center, center);
-          width: 5rem;
-          height: 5rem;
-          margin-right: 1rem;
-          div {
-            @include flex(center, center);
-            flex-wrap: wrap;
-            height: 100%;
-            width: 40%;
-            span {
-              @include flex(center, center);
-              width: 100%;
-              height: 50%;
-              border: 1px solid grey;
-              svg {
-                cursor: pointer;
-              }
-              &:hover {
-                background: $main-btn;
-              }
-            }
-          }
-          input {
-            height: 100%;
-            width: 70%;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            border: 1px solid grey;
-            border-right: none;
-            outline: none;
-          }
-        }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-        input[type=number] {
-          -moz-appearance:textfield;
-        }
         .btnContainer {
           width: 100%;
           button {
@@ -196,6 +159,229 @@
             }
             &:hover {
               background: $primary-light;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.addCart {
+  @include flex(flex-start, center);
+  flex-wrap: wrap;
+  img {
+    width: 8rem;
+  }
+  .name {
+    margin-left: 1rem;
+    p {
+      font-size: 1.2rem;
+      &:first-of-type {
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .popBtn {
+    @include flex(space-between, center);
+    width: 100%;
+    margin-top: 3rem;
+    a {
+      list-style: none;
+      text-decoration: none;
+    }
+    p {
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      letter-spacing: .2rem;
+      color: $primary-light;
+      cursor: pointer;
+      transition: $main-transition;
+      &:hover {
+        color: $main-btn;
+      }
+    }
+    button {
+      width: 12rem;
+      height: 100%;
+      font-size: 1.5rem;
+      padding: 1rem;
+      text-decoration: none;
+      font-weight: 800;
+      background: $main-btn;
+      color: $main-font;
+      transition: $main-transition;
+      cursor: pointer;
+      &:hover {
+        background: $primary-light;
+      }
+    }
+  }
+}
+@media (max-width: 479px) {
+  .root {
+    @include flex(center,center);
+    width:100%;
+    .smallSizeScreen {
+      width: 100%;
+      text-align: left;
+      display: block;
+      font-size: 1.8rem;
+      margin-left: 1rem;
+    }
+    .navigation {
+      margin: 1rem;
+      p {
+        font-size: 1rem;
+        svg {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    .container {
+      margin: 1rem 1rem 2rem;
+      height: auto;
+      @include flex(center,flex-start);
+      flex-wrap: wrap;
+      .general {
+        width: 100%;
+        span {
+          font-size: 1.1rem;
+          button {
+            svg {
+              font-size: 2rem;
+            }
+          }
+        }
+        div {
+          font-size: 1rem;
+        }
+      }
+      .img {
+        width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        order: -1;
+        img {
+          width: 100%;
+        }
+      }
+      .data {
+        width: 100%;
+        margin: 0 1.5rem 0 .5rem;
+        h3 {
+          display: none;
+        }
+        .ratingShort {
+          display: none;
+        }
+        .priceContainer {
+          @include flex(flex-start,center);
+          flex-wrap: wrap;
+          margin: 1rem 0;
+          .stock {
+            font-size: 0.8rem;
+            width: 100%;
+            order: -1;
+            margin-bottom: 2rem;
+            svg {
+              margin-left: .7rem;
+            }
+          }
+          .price {
+            width: 100%;
+            font-size: 1.8rem;
+          }
+        }
+        .quantity {
+          @include flex(center, center);
+          .btnContainer {
+            button {
+              margin-bottom: 5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    @include flex(center,center);
+    width:100%;
+    .smallSizeScreen {
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+    .navigation {
+      margin: 1rem;
+      p {
+        font-size: 1rem;
+        svg {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    .container {
+      margin: 1rem 1rem 2rem;
+      @include flex(center,flex-start);
+      flex-wrap: wrap;
+      .general {
+        width: 100%;
+        span {
+          font-size: 1.1rem;
+          button {
+            svg {
+              font-size: 2rem;
+            }
+          }
+        }
+        div {
+          font-size: 1rem;
+        }
+      }
+      .img {
+        width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        order: -1;
+        img {
+          width: 100%;
+        }
+      }
+      .data {
+        width: 100%;
+        margin: 0 1.5rem 0 .5rem;
+        h3 {
+          display: none;
+        }
+        .ratingShort {
+          display: none;
+        }
+        .priceContainer {
+          @include flex(flex-start,center);
+          flex-wrap: wrap;
+          margin: 1rem 0;
+          .stock {
+            font-size: 0.8rem;
+            width: 100%;
+            order: -1;
+            margin-bottom: 2rem;
+            svg {
+              margin-left: .7rem;
+            }
+          }
+          .price {
+            width: 100%;
+            font-size: 1.8rem;
+          }
+        }
+        .quantity {
+          @include flex(center, center);
+          .btnContainer {
+            button {
+              margin-bottom: 5rem;
             }
           }
         }

@@ -4,6 +4,7 @@
   width: 100%;
   height: auto;
   background: $primary;
+  max-width: 1715px;
   .container {
     @include flex(flex-start, center);
     flex-wrap: wrap;
@@ -24,6 +25,36 @@
       }
       .active {
         color: $main-btn;
+      }
+    }
+  }
+}
+@media (max-width: 479px) {
+  .root {
+    .container {
+      .list {
+        overflow: auto;
+        margin: 1rem 1rem;
+        width: 90%;
+        p {
+          font-size: 2rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .container {
+      .list {
+        overflow: auto;
+        margin: 1rem 1rem;
+        width: 90%;
+        p {
+          font-size: 2rem;
+          margin-right: 1rem;
+        }
       }
     }
   }

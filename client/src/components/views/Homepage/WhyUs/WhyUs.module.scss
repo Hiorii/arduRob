@@ -2,43 +2,62 @@
 
 .root {
   @include flex(center, center);
-  margin-top: 10rem;
+  margin-top: 5rem;
+  max-width: 1715px;
   .container {
     @include flex(center,center);
     flex-wrap: wrap;
-    .img {
-      margin-right: 10rem;
-      img {
-        height: 45rem;
-      }
-    }
-    .content {
-      width: 28rem;
-      color: $second-font;
-      margin-top: 3rem;
-      span {
-        color: $main-btn;
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      h1 {
-        font-size: 3rem;
-        margin: 1rem 0;
-      }
-      p {
-        font-size: 1.4rem;
-        margin: .5rem;
-      }
-      ul {
-        list-style-position: outside;
-        li {
-          font-size: 1.2rem;
-          margin-left: 2.2rem;
+    width: 100%;
+    .faceContent {
+      @include flex(center, center);
+      .img {
+        margin-right: 10rem;
+        width: 100%;
+        max-width: 600px;
+        img {
+          width: 100%;
         }
       }
-      .btn {
-        @include flex(center,center);
+      .content {
+        width: 100%;
+        color: $second-font;
+        margin-top: 3rem;
+        @include flex(flex-start,center);
+        flex-wrap: wrap;
+        span {
+          text-align: center;
+          color: $main-btn;
+          text-transform: uppercase;
+          font-size: 1.2rem;
+          font-weight: 600;
+          width: 100%;
+        }
+        h1 {
+          text-align: center;
+          width: 100%;
+          font-size: 3rem;
+          margin: 1rem 0;
+        }
+        p {
+          text-align: center;
+          width: 100%;
+          font-size: 1.4rem;
+          margin: .5rem;
+        }
+        ul {
+          text-align: center;
+          width: 100%;
+          list-style-position: inside;
+          li {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-left: 2.2rem;
+          }
+        }
+        .btn {
+          width: 100%;
+          @include flex(center,center);
+        }
       }
     }
     .notSure {
@@ -89,6 +108,9 @@
             text-decoration: underline;
           }
         }
+        .notSureItem:last-of-type {
+          margin-right: 0;
+        }
       }
       h5:last-of-type {
         width: 100%;
@@ -107,3 +129,148 @@
     }
   }
 }
+
+@media (max-width: 479px) {
+  .root {
+    margin-top: 2rem;
+    .container {
+      .faceContent {
+        display: block;
+        .img {
+          margin-right: 0;
+          img {
+            width: 100%;
+          }
+        }
+        .content {
+          width: 100%;
+          margin: 2rem 0 1rem 0;
+          @include flex(center,center);
+          h1 {
+            margin-left: 1rem;
+            font-size: 2rem;
+          }
+          span {
+            margin-left: 1rem;
+          }
+          p {
+            margin-left: 1rem;
+            font-size: 1.1rem;
+          }
+          ul {
+            margin-left: 1rem;
+            list-style-position: outside;
+            li {
+              font-size: 1rem;
+              margin-left: 2rem;
+            }
+          }
+          .btn {
+            width: 100%;
+            @include flex(center,center);
+          }
+        }
+      }
+      .notSure {
+        margin: 1rem;
+        h3 {
+          font-size: 2rem;
+          margin: 0 1rem 1rem;
+        }
+        h5 {
+          font-size: 1.4rem;
+        }
+        .notSureContainer {
+          margin: 0;
+          flex-wrap: wrap;
+          .notSureItem {
+            @include flex(center, center);
+            flex-wrap: wrap;
+            margin: 1rem 1rem 5rem;
+            width: 100%;
+            img {
+              height: 6rem;
+            }
+            h5 {
+              margin: 1rem 0;
+            }
+            p {
+              font-size: 1.2rem;
+              span {
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
+        .readySolDesc {
+          margin: 2rem 1rem;
+          p {
+            width: 100%;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1148px) {
+  .root {
+    margin-top: 2rem;
+    .container {
+      .faceContent {
+        @include flex(center,center);
+        flex-wrap: wrap;
+        .img {
+          margin-right: 0;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .notSure {
+        margin: 1rem;
+        h3 {
+          font-size: 2rem;
+          margin: 0 1rem 1rem;
+        }
+        h5 {
+          font-size: 1.4rem;
+        }
+        .notSureContainer {
+          margin: 0;
+          flex-wrap: wrap;
+          .notSureItem {
+            @include flex(center, center);
+            flex-wrap: wrap;
+            margin: 1rem 1rem 5rem;
+            width: 100%;
+            img {
+              height: 6rem;
+            }
+            h5 {
+              margin: 1rem 0;
+            }
+            p {
+              font-size: 1.2rem;
+              span {
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
+        .readySolDesc {
+          margin: 2rem 1rem;
+          p {
+            width: 100%;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 771px) and (max-width: 1024px) {
+
+}
+

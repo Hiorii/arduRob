@@ -1,1 +1,18 @@
 @import '../../../styles/settings';
+
+.root {
+  width: 100%;
+  @include flex(center,center);
+  flex-wrap: wrap;
+  .banner {
+    width: 100%;
+  }
+  .feedback {
+    width: 100%;
+  }
+  .us {
+    width: 100%;
+    @include flex(center,center);
+    flex-wrap: wrap;
+  }
+}

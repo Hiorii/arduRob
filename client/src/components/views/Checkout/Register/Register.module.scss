@@ -24,4 +24,33 @@
     outline: none;
   }
 }
-
+@media (max-width: 479px) {
+  .root {
+    label {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0 1rem 0;
+    }
+    input {
+      height: 3rem;
+      font-size: 1rem;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    label {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0 1rem 0;
+    }
+    input {
+      height: 3rem;
+      font-size: 1rem;
+    }
+  }
+}

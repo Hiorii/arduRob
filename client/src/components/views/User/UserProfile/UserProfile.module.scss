@@ -96,3 +96,119 @@
     }
   }
 }
+@media (max-width: 479px) {
+  .root {
+    .basicUser{
+      padding: 1rem;
+      h1 {
+        font-size: 2rem;
+        span {
+          font-size: 2.2rem;
+        }
+      }
+      .basicEmail {
+        font-size: 1rem;
+      }
+      div {
+        font-size: 1rem;
+        margin-top: 2rem;
+        svg {
+          margin-right: 1rem;
+          font-size: 1rem;
+        }
+        svg:last-of-type {
+          margin-left: 1rem;
+        }
+      }
+    }
+    .dataUser {
+      @include flex(center, center);
+      padding: 1rem;
+      h1 {
+        font-size: 1.6rem;
+      }
+      .dataMain {
+        @include flex(center, center);
+        .dataContainer {
+          width: 100%;
+          .desc {
+            margin-bottom: .3rem;
+            font-size: 1.2rem;
+          }
+          .value {
+            font-size: 1rem;
+            font-weight: 600;
+          }
+          .valueWarning {
+            font-size: 1rem;
+            @include flex(center, center);
+            svg {
+              font-size: 1rem;
+            }
+          }
+          .change {
+            margin-top: .3rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .basicUser{
+      padding: 1rem;
+      h1 {
+        font-size: 2rem;
+        span {
+          font-size: 2.2rem;
+        }
+      }
+      .basicEmail {
+        font-size: 1rem;
+      }
+      div {
+        font-size: 1rem;
+        margin-top: 2rem;
+        svg {
+          margin-right: 1rem;
+          font-size: 1rem;
+        }
+        svg:last-of-type {
+          margin-left: 1rem;
+        }
+      }
+    }
+    .dataUser {
+      @include flex(center, center);
+      padding: 1rem;
+      h1 {
+        font-size: 1.6rem;
+      }
+      .dataMain {
+        @include flex(center, center);
+        .dataContainer {
+          width: 100%;
+          .desc {
+            margin-bottom: .3rem;
+            font-size: 1.2rem;
+          }
+          .value {
+            font-size: 1rem;
+            font-weight: 600;
+          }
+          .valueWarning {
+            font-size: 1rem;
+            @include flex(center, center);
+            svg {
+              font-size: 1rem;
+            }
+          }
+          .change {
+            margin-top: .3rem;
+          }
+        }
+      }
+    }
+  }
+}

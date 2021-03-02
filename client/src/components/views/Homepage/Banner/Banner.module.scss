@@ -2,8 +2,8 @@
 
 .root {
   background: $primary;
-  max-height: 1280px;
   @include flex(center,center);
+  flex-wrap: wrap;
   .content {
     width: 23rem;
     color: white;
@@ -25,22 +25,96 @@
     }
   }
   .images {
-    width: 40rem;
+    width: 42rem;
+    height: 39rem;
     position: relative;
+    margin-top: 8rem;
     img {
       position: absolute;
-      width: 30rem;
+      width: 70%;
     }
     img:first-of-type {
-      top: -17rem;
+      top: -3rem;
     }
     img:nth-of-type(2) {
-      top: 0;
-      left: 8rem;
+      top: 15rem;
+      left: 13rem;
     }
     img:nth-of-type(3) {
-      top: 3rem;
-      left: -9rem;
+      top: 18rem;
+      left: -7rem;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .root {
+    .content {
+      margin: 10rem 1rem 1rem 1rem;
+    }
+    .images {
+      width: 22rem;
+      height: 18rem;
+      margin: 0 1rem;
+      @include flex(center, center);
+      img {
+        position: absolute;
+        width: 15rem;
+      }
+      img:first-of-type {
+        top: 1rem;
+      }
+      img:nth-of-type(2) {
+        display: none;
+      }
+      img:nth-of-type(3) {
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 770px) {
+  .root {
+    .content {
+      margin: 10rem 1rem 1rem 1rem;
+    }
+    .images {
+      width: 22rem;
+      height: 18rem;
+      margin: 0 1rem;
+      @include flex(center, center);
+      img {
+        position: absolute;
+        width: 15rem;
+      }
+      img:first-of-type {
+        top: 1rem;
+      }
+      img:nth-of-type(2) {
+        display: none;
+      }
+      img:nth-of-type(3) {
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (min-width: 771px) and (max-width: 1024px) {
+  .root {
+    .images {
+      width: 28rem;
+      height: 26rem;
+      img:first-of-type {
+        top: -1rem;
+      }
+      img:nth-of-type(2) {
+        top: 12rem;
+        left: 9rem;
+      }
+      img:nth-of-type(3) {
+        top: 13rem;
+        left: -5rem;
+      }
     }
   }
 }

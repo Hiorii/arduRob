@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import styles from './ProductMain.module.scss';
 import {addToCart} from '../../../../../redux/productRedux';
-import {BsPlus, BsArrowRightShort, BsArrowDown} from 'react-icons/bs';
-import {BiMinus, BiCheck, BiCartAlt} from 'react-icons/bi';
+import {BsArrowRightShort, BsArrowDown} from 'react-icons/bs';
+import {BiCheck, BiCartAlt} from 'react-icons/bi';
 import {MdKeyboardArrowRight} from 'react-icons/md';
+import {PopupContext} from '../../../../../context/popupContext';
 
 const ProductMain = () => {
   const history = useHistory();
@@ -13,6 +14,7 @@ const ProductMain = () => {
   const [isDelivery, setIsDelivery] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const dispatch = useDispatch();
+  const popup = useContext(PopupContext);
 
   const deliverySetter = () => {
     setIsDelivery(!isDelivery);
@@ -24,8 +26,31 @@ const ProductMain = () => {
     setIsDelivery(false);
   };
 
+  const closePop = () => {
+    popup.closePopup();
+  };
+
   const addProductToCart = (currentProduct) => {
-    dispatch(addToCart(currentProduct));
+    console.log(currentProduct);
+    //dispatch(addToCart(currentProduct));
+    popup.showPopup(
+      'Product added to cart',
+      <div className={styles.addCart}>
+        <img src={currentProduct.image} alt={currentProduct.name}/>
+        <div className={styles.name}>
+          <p>{currentProduct.name}</p>
+          <p>€{currentProduct.price}</p>
+        </div>
+        <div className={styles.popBtn}>
+          <Link to='/shop'>
+            <p onClick={closePop}>back to shop</p>
+          </Link>
+          <Link to='/cart'>
+            <button onClick={closePop}>Go to Cart</button>
+          </Link>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -45,6 +70,7 @@ const ProductMain = () => {
           {currentProduct.name}
         </p>
       </div>
+      <h1 className={styles.smallSizeScreen}>{currentProduct.name}</h1>
       <div className={styles.container}>
         <div className={styles.general}>
           {!isDelivery &&
@@ -100,7 +126,6 @@ const ProductMain = () => {
             <span className={styles.price}>€{currentProduct.price}</span>
             <p className={styles.stock}>
               <BiCheck /> In stock
-              <span> ({currentProduct.quantity})</span>
             </p>
           </div>
           <div className={styles.quantity}>

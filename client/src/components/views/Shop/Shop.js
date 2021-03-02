@@ -21,15 +21,6 @@ const Shop = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.subMenu}>
-        <div className={styles.list}>
-          {categories && categories.data.map((category,index) => {
-            return (
-              <Link key={index} to='/'>{category.name}</Link>
-            );
-          })}
-        </div>
-      </div>
       <BannerShop />
       <div className={styles.featuresProd}>
         <FeaturedProduct products={products} title='Feature Products'/>

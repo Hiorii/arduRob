@@ -10,6 +10,9 @@
   .container {
     @include flex(space-between, center);
     margin: 0 2rem 2rem 2rem;
+    .burger {
+      display: none;
+    }
     .logo {
       margin-top: 1rem;
       a {
@@ -18,6 +21,7 @@
         img {
           height: 5rem;
           width: 4.5rem;
+          margin-left: 1rem;
         }
         span {
           font-size: 2.2rem;
@@ -135,6 +139,9 @@
   background: $main-font;
   z-index: 99;
   transition: $main-transition;
+  .burger {
+    display: none;
+  }
   .container {
     @include flex(space-between, center);
     margin: 0 2rem 2rem 2rem;
@@ -146,6 +153,7 @@
         img {
           height: 5rem;
           width: 4.5rem;
+          margin-left: 1rem;
         }
         span {
           font-size: 2.2rem;
@@ -176,7 +184,11 @@
       position: relative;
       .ico {
         font-size: 2.3rem;
-        cursor: pointer;
+        color: $main-font;
+        svg {
+          color: $second-font;
+          cursor: pointer;
+        }
       }
       .userActive {
         display: none;
@@ -248,6 +260,79 @@
         position: absolute;
         left: 3.7rem;
         bottom: 2.1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .root, .rootScroll {
+    .container {
+      @include flex(flex-start, center);
+      margin: 0 1.5rem 0 0;
+      .burger {
+        display: block;
+      }
+      .list {
+        display: none;
+      }
+      .logo {
+        margin-left: 1rem;
+        margin-right: 4rem;
+        a {
+          img {
+            margin: 0;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      .icons {
+        margin-right: 4rem;
+        .user{
+          position: fixed;
+          width: 100vw;
+          height: 50vh;
+          top: 6rem;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+  .root, .rootScroll {
+    .container {
+      @include flex(flex-start, center);
+      margin: 0 1.5rem 0 0;
+      .burger {
+        display: block;
+      }
+      .list {
+        display: none;
+      }
+      .logo {
+        margin-left: 1rem;
+        margin-right: 4rem;
+        a {
+          img {
+            margin: 0;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      .icons {
+        margin-right: 4rem;
+        .user{
+          position: fixed;
+          width: 100vw;
+          height: 50vh;
+          top: 6rem;
+          right: 0;
+        }
       }
     }
   }

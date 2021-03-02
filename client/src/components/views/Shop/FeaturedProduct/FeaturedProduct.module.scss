@@ -5,6 +5,7 @@
   width: 90%;
   background: $primary-white;
   box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+  max-width: 1715px;
   .title {
     margin-left: 3rem;
     h1 {
@@ -21,12 +22,58 @@
     margin: 1rem;
     flex: 1;
     display: flex;
-    overflow: auto;
+    overflow-x: scroll;
     .featureProductsContainerInner {
       margin-bottom: 3rem;
       a {
         text-decoration: none;
         color: $second-font;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .root {
+    padding-top: 1rem;
+    width: 100%;
+    .title {
+      margin-left: 1rem;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+    .featureProductsContainer {
+      margin: 0;
+      height: 22rem;
+      .featureProductsContainerInner {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) and (max-width: 770px) {
+  .root {
+    padding-top: 1rem;
+    width: 100%;
+    .title {
+      margin-left: 1rem;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+    .featureProductsContainer {
+      margin: 0;
+      height: 22rem;
+      .featureProductsContainerInner {
+        margin-bottom: 2rem;
       }
     }
   }
