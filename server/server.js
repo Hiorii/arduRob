@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const session = require('express-session');
 const mongoData = require('./envData/mongoDbData');
 const connectToDb = require('./config/db');
 const app = express();
@@ -15,7 +14,6 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(session({secret: 'hiorii' }));
 
 /* API ENDPOINTS */
 app.use('/api', require('./routes/products.routes'));

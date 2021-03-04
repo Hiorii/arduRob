@@ -103,7 +103,7 @@ const Cart = () => {
                     <tr key={index}>
                       <td><img src={product.image} alt={product.name}/></td>
                       <td className={styles.name}>{product.name}</td>
-                      <td>{product.subCategoryId.name}</td>
+                      <td>{product.subCategoryId?.name}</td>
                       <td className={styles.quantity}>
                         <div className={styles.quantityContainer}>
                           <div className={styles.inputContainer}>

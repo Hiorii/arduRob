@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import Alerts from '../../features/Alert/Alert';
 import {fetchProducts, getAllProducts} from '../../../redux/productRedux';
 import {fetchCategory} from '../../../redux/categoryRedux';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Popup from '../../features/Popup/Popup';
 
 const MainLayout = ({children}) => {

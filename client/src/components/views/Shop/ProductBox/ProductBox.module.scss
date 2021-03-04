@@ -28,7 +28,7 @@
         font-size: 1.6rem;
         margin: 1rem;
       }
-      div {
+      .dataInner {
         @include flex(space-between, center);
         width: 100%;
         margin: 1rem;
@@ -40,7 +40,7 @@
           font-size: 2rem;
           transition: $main-transition;
           &:hover {
-            background: $main-btn;
+            color: $main-btn;
           }
         }
       }
@@ -81,13 +81,6 @@
             font-size: 1.5rem;
             font-weight: 800;
           }
-          svg {
-            font-size: 2rem;
-            transition: $main-transition;
-            &:hover {
-              background: $main-btn;
-            }
-          }
         }
       }
     }
@@ -126,13 +119,6 @@
           p {
             font-size: 1.5rem;
             font-weight: 800;
-          }
-          svg {
-            font-size: 2rem;
-            transition: $main-transition;
-            &:hover {
-              background: $main-btn;
-            }
           }
         }
       }

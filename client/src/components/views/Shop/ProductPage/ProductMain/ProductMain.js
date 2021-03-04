@@ -31,8 +31,7 @@ const ProductMain = () => {
   };
 
   const addProductToCart = (currentProduct) => {
-    console.log(currentProduct);
-    //dispatch(addToCart(currentProduct));
+    dispatch(addToCart(currentProduct));
     popup.showPopup(
       'Product added to cart',
       <div className={styles.addCart}>
