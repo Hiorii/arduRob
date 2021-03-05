@@ -75,7 +75,6 @@ const ProductList = ({products, categories, subCategories}) => {
   // }
 
   useEffect(()=> {
-    console.log('wow');
     if(byCategory.length > 0) {
       byCategory && setAllProducts(byCategory);
       const indexOfLastItem = currentPage * itemsPerPage;

@@ -9,6 +9,7 @@
   @include flex(center, center);
   .container {
     width: 60%;
+    max-width: 630px;
     @include flex(flex-start,center);
     flex-wrap: wrap;
     background: $primary-white;

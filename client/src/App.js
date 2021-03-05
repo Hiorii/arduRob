@@ -12,7 +12,7 @@ import Cart from './components/views/Cart/Cart';
 import Checkout from './components/views/Checkout/Checkout';
 import User from './components/views/User/User';
 import SuccessCheckout from './components/views/Checkout/SuccessCheckout/SuccessCheckout';
-import UserProfile from './components/views/User/UserProfile/UserProfile';
+import NotFound from './components/views/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
             <Route exact path='/cart/checkout' component={Checkout} />
             <Route exact path='/cart/checkout/success' component={SuccessCheckout} />
             <Route exact path='/login' component={User} />
-            {/*<Route exact path='*' component={}/>*/}
+            <Route exact path='*' component={NotFound}/>
           </Switch>
         </MainLayout>
       </BrowserRouter>

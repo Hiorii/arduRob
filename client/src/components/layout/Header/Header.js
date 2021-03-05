@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {logoutUser} from '../../../redux/userRedux';
 import {Link, useHistory, useLocation} from 'react-router-dom';
@@ -21,6 +21,9 @@ const Header = () => {
   const currentUser = useContext(UserContext).user;
   const dispatch = useDispatch();
   const cartTotalValue = useSelector(cartTotalQuantity);
+  const userPopCont = useRef(null);
+  const userIcon = useRef(null);
+
   const headerStyles = () => {
     setScrollPos(window.scrollY);
   };
@@ -32,6 +35,19 @@ const Header = () => {
 
   const showMenuUser = () => {
     setShowMenu(!showMenu);
+  };
+
+  const handleClickOutside = e => {
+    if(showMenu) {
+      if (userPopCont.current && !userPopCont.current.contains(e.target) && !userIcon.current.contains(e.target)) {
+        setShowMenu(!showMenu);
+      }
+    }
+  };
+  const handlePressEsc = e => {
+    if (e.keyCode === 27) {
+      setShowMenu(!showMenu);
+    }
   };
 
   useEffect(()=> {
@@ -67,6 +83,16 @@ const Header = () => {
     }
     setShowMenu(false);
   },[location]);
+
+  useEffect(()=> {
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handlePressEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handlePressEsc);
+    };
+  },[]);
+
   return (
     <div id='root' className={scrollPos > 0 ? styles.root && styles.rootScroll: styles.root}>
       <div className={styles.container}>
@@ -88,10 +114,10 @@ const Header = () => {
           <div className={styles.totalQuantity}>
             {cartTotal}
           </div>
-          <div className={styles.ico} onClick={showMenuUser}>
+          <div ref={userIcon} className={styles.ico} onClick={showMenuUser}>
             <BiUserCircle />
           </div>
-          <div className={showMenu ? styles.user : styles.userActive}>
+          <div ref={userPopCont} className={showMenu ? styles.user : styles.userActive}>
             <div className={styles.userData}>
               <div className={styles.loUser}>
                 {!currentUser?.token &&

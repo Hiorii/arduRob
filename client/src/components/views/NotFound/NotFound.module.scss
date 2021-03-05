@@ -1,0 +1,11 @@
+@import '../../../styles/settings';
+
+.root {
+  @include flex(center,center);
+  .container {
+    margin-top: 10rem;
+    img {
+      width: 40rem;
+    }
+  }
+}

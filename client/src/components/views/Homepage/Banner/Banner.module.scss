@@ -99,9 +99,39 @@
     }
   }
 }
-@media screen and (min-width: 771px) and (max-width: 1024px) {
+@media screen and (min-width: 771px) and (max-width: 990px) {
   .root {
+    .content {
+      margin: 10rem 5rem 5rem;
+    }
     .images {
+      margin-top: 0;
+      margin-bottom: 2rem;
+      width: 28rem;
+      height: 26rem;
+      img:first-of-type {
+        top: -1rem;
+      }
+      img:nth-of-type(2) {
+        top: 12rem;
+        left: 9rem;
+      }
+      img:nth-of-type(3) {
+        top: 13rem;
+        left: -5rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1215px) {
+  .root {
+    .content {
+      margin: 10rem 5rem 5rem;
+    }
+    .images {
+      margin-top: 7rem;
+      margin-bottom: 0;
       width: 28rem;
       height: 26rem;
       img:first-of-type {

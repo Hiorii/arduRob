@@ -1,15 +1,41 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './ProductBox.module.scss';
 import PropTypes from 'prop-types';
 import {FaCartPlus} from 'react-icons/fa';
 import {addToCart} from '../../../../redux/productRedux';
 import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {PopupContext} from '../../../../context/popupContext';
 
 const ProductBox = ({product}) => {
   const dispatch = useDispatch();
+  const popup = useContext(PopupContext);
 
-  const quickAddToCart = (product) => {
+  const closePop = () => {
+    popup.closePopup();
+  };
+
+  const quickAddToCart = (e, product) => {
+    e.preventDefault();
     dispatch(addToCart(product));
+    popup.showPopup(
+      'Product added to cart',
+      <div className={styles.addCart}>
+        <img src={product.image} alt={product.name}/>
+        <div className={styles.name}>
+          <p>{product.name}</p>
+          <p>€{product.price}</p>
+        </div>
+        <div className={styles.popBtn}>
+          <Link to='/shop'>
+            <p onClick={closePop}>back to shop</p>
+          </Link>
+          <Link to='/cart'>
+            <button onClick={closePop}>Go to Cart</button>
+          </Link>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -22,7 +48,7 @@ const ProductBox = ({product}) => {
           <h3>{product.name}</h3>
           <div className={styles.dataInner}>
             <p>{product.price} EUR</p>
-            <div onClick={()=>quickAddToCart(product)}>
+            <div onClick={(e)=>quickAddToCart(e, product)}>
               <FaCartPlus />
             </div>
           </div>

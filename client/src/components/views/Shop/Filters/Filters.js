@@ -13,6 +13,7 @@ const Filters = ({categories, products, subCategories, setByCategory, setCurrent
     if (subCategoryName === 'all') {
       setFilteredCategoryProducts(allProducts);
     } else {
+      console.log(subCategoryName);
       const filteredAllProducts = allProducts.filter(product => product?.subCategoryId?.name === subCategoryName);
       setFilteredCategoryProducts(filteredAllProducts);
     }
@@ -63,7 +64,27 @@ const Filters = ({categories, products, subCategories, setByCategory, setCurrent
           );
         })}
       </div>
+      <div className={styles.sortByOption}>
+        <div className={styles.selectName}>Categories</div>
+        <select onChange={(e)=>filterByCategory(e.target.value)}>
+          <option className={styles.allOption} value='all'>All Products</option>
+          {allCategories && allCategories.map((category, index) => {
+            return (
+              <>
+                <optgroup label={category.name}>
+                  {allSubcategories?.filter(sub => sub.categoryId.name === category.name).map((subcat, indeks) => {
+                    return (
+                      <option key={indeks} className={styles.subCat} value={subcat.name} >{subcat.name}</option>
+                    );
+                  })}
+                </optgroup>
+              </>
+            );
+          })}
+        </select>
+      </div>
       <div className={styles.sortBy}>
+        <div className={styles.selectName}>Sorting</div>
         <select defaultValue={'DEFAULT'} onChange={e => sortProducts(e)}>
           <option value='' disabled>
             Sort by

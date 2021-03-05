@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useState, useRef} from 'react';
-import PropTypes from 'prop-types';
+import React, {useContext, useEffect, useRef} from 'react';
 import styles from './Popup.module.scss';
 import {AiOutlineClose} from 'react-icons/ai';
 import {PopupContext} from '../../../context/popupContext';
@@ -7,8 +6,6 @@ import {PopupContext} from '../../../context/popupContext';
 const Popup = () => {
   const popup = useContext(PopupContext);
   const popupCont = useRef(null);
-  const [initializer, setInitializer] = useState(false);
-
 
   const closePopup = () => {
     popup.closePopup();
@@ -32,7 +29,7 @@ const Popup = () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handlePressEsc);
     };
-  },[closePopup, initializer]);
+  },[closePopup]);
 
   return (
     <>
