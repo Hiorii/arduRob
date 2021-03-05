@@ -1,0 +1,8 @@
+@import '../../../styles/settings';
+
+.root {
+  @include flex(center, center);
+  .container {
+    margin-top: 12rem;
+  }
+}

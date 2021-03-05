@@ -13,7 +13,7 @@ const Shop = () => {
   const subCategories = useSelector(getAllSubCategory)?.data;
   const products = JSON.parse(localStorage.getItem('products'));
   const dispatch = useDispatch();
-  console.log(subCategories);
+
   useEffect(()=> {
     dispatch(fetchCategory());
     dispatch(fetchSubCategory());

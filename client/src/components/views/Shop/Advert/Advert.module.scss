@@ -100,4 +100,10 @@
     }
   }
 }
-
+@media (max-width: 867px) {
+  .root {
+    .imgContainer {
+      display: none;
+    }
+  }
+}

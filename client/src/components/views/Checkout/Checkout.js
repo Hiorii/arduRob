@@ -6,6 +6,7 @@ import {MdKeyboardArrowRight} from 'react-icons/md/index';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import Guest from './Guest/Guest';
+import ConfirmCheckout from './ConfirmCheckout/ConfirmCheckout';
 import {sendOrder} from '../../../redux/cartRedux';
 import {UserContext} from '../../../context/userContext';
 import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
@@ -34,6 +35,8 @@ const Checkout = () => {
   const currentUser = useContext(UserContext).user;
   const alert = useContext(AlertContext);
   const isUserFetch = useSelector(isUserFetched);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const finalSum = history.location.state?.finalPrice;
 
   const activeLogin = () => {
     setIsLogin(true);
@@ -131,6 +134,16 @@ const Checkout = () => {
 
   const confirmOrder = (e) => {
     e.preventDefault();
+    if(!privacy || !terms) {
+      alert.dangerAlert(`You must accept Privacy Policy and Terms & Conditions`);
+      setTimeout(()=> {alert.closeAlert();},4000);
+    } else {
+      setIsConfirmed(true);
+    }
+  };
+
+  const finishOrder = (e) => {
+    e.preventDefault();
     setOrder({
       email: user.result.email,
       name: user.result.firstName + ' ' + user.result.lastName,
@@ -155,10 +168,9 @@ const Checkout = () => {
   useEffect(()=> {
     setUser(currentUser);
     setOrderProducts(cartProducts);
-    console.log(order);
     if(order && Object.keys(order).length !==0 && user) {
       if(!privacy || !terms) {
-        alert.dangerAlert(`You must accept Provacy Policy and Terms & Conditions`);
+        alert.dangerAlert(`You must accept Privacy Policy and Terms & Conditions`);
         setTimeout(()=> {alert.closeAlert();},4000);
       } else {
         dispatch(sendOrder(order));
@@ -221,43 +233,57 @@ const Checkout = () => {
           }
         </form>
         <form className={!user ? styles.shipmentDetails : ''}>
-          <div className={styles.shipment}>
-            <div>
-              <h3>Shipping Method</h3>
-              <label htmlFor='shipment' className={styles.cont}>Delivery with DHL
-                <input id='shipment' name='shipment' type="radio" value='DHL Delivery' checked={shipping} onChange={(e) => setShipping(e.target.value)}/>
-                <span className={styles.checkmark}> </span>
-              </label>
-            </div>
-            <div>
-              <h3>Payment Method</h3>
-              <label htmlFor='paymentCard' className={styles.cont}>Credit / Debit card
-                <input id='paymentCard' name='payment' type="radio" value='Card Payment' defaultChecked onChange={(e) => setPayment(e.target.value)}/>
-                <span className={styles.checkmark}> </span>
-              </label>
-              <label htmlFor='paymentPayPal' className={styles.cont}>PayPal Express Checkout
-                <input id='paymentPayPal' name='payment' type="radio" value='PayPal Payment' onChange={(e) => setPayment(e.target.value)}/>
-                <span className={styles.checkmark}> </span>
-              </label>
-            </div>
-          </div>
-          <div className={styles.comment}>
-            <label htmlFor='comment' className={styles.com}>Add Comment About Your Order (optional)</label>
-            <input id='comment' type='text' placeholder='Add Comment About Your Order (max 100 characters)' onChange={(e)=>setComment(e.target.value)}/>
-            <div className={styles.confirm}>
+          {!isConfirmed &&
+          <>
+            <div className={styles.shipment}>
               <div>
-                <input id='Privacy' type="checkbox" name='confirmation' onChange={()=> setPrivacy(!privacy)}/>
-                <label htmlFor='Privacy'>I have read and agree the the <span>Privacy Policy</span></label>
+                <h3>Shipping Method</h3>
+                <label htmlFor='shipment' className={styles.cont}>Delivery with DHL
+                  <input id='shipment' name='shipment' type="radio" value='DHL Delivery' checked={shipping} onChange={(e) => setShipping(e.target.value)}/>
+                  <span className={styles.checkmark}> </span>
+                </label>
               </div>
               <div>
-                <input id ='Terms' type="checkbox" name='confirmation' onChange={()=> setTerms(!terms)}/>
-                <label htmlFor='Terms'>I have read and agree the the <span>Terms & Conditions</span></label>
+                <h3>Payment Method</h3>
+                <label htmlFor='paymentCard' className={styles.cont}>Credit / Debit card
+                  <input id='paymentCard' name='payment' type="radio" value='Card Payment' defaultChecked onChange={(e) => setPayment(e.target.value)}/>
+                  <span className={styles.checkmark}> </span>
+                </label>
+                <label htmlFor='paymentPayPal' className={styles.cont}>PayPal Express Checkout
+                  <input id='paymentPayPal' name='payment' type="radio" value='PayPal Payment' onChange={(e) => setPayment(e.target.value)}/>
+                  <span className={styles.checkmark}> </span>
+                </label>
               </div>
             </div>
+            <div className={styles.comment}>
+              <label htmlFor='comment' className={styles.com}>Add Comment About Your Order (optional)</label>
+              <input id='comment' type='text' placeholder='Add Comment About Your Order (max 100 characters)' onChange={(e)=>setComment(e.target.value)}/>
+              <div className={styles.confirm}>
+                <div>
+                  <input id='Privacy' type="checkbox" name='confirmation' onChange={()=> setPrivacy(!privacy)}/>
+                  <label htmlFor='Privacy'>I have read and agree the the <span>Privacy Policy</span></label>
+                </div>
+                <div>
+                  <input id ='Terms' type="checkbox" name='confirmation' onChange={()=> setTerms(!terms)}/>
+                  <label htmlFor='Terms'>I have read and agree the the <span>Terms & Conditions</span></label>
+                </div>
+              </div>
+            </div>
+            <button onClick={(e)=>confirmOrder(e)}>
+              Confirm Order
+            </button>
+          </>
+          }
+          {isConfirmed &&
+          <div>
+            <ConfirmCheckout payment={payment} shipping={shipping} finalSum={finalSum}/>
           </div>
-          <button type='submit' onClick={(e)=>confirmOrder(e)}>
-            Confirm Order
+          }
+          {isConfirmed &&
+          <button type='submit' onClick={(e) => finishOrder(e)}>
+            Finish Order
           </button>
+          }
         </form>
       </div>
     </div>

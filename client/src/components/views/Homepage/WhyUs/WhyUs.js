@@ -22,7 +22,7 @@ const WhyUs = () => {
             </ul>
             <p>Or do you maybe miss some parts? For this check out our shop:</p>
             <div className={styles.btn}>
-              <Button data='Shop Now!' url='/'/>
+              <Button data='Shop Now!' url='/shop'/>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@ const WhyUs = () => {
             </p>
           </div>
           <div className={styles.btn}>
-            <Button data='Check Shop' url='/' />
+            <Button data='Check Shop' url='/shop' />
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ import Checkout from './components/views/Checkout/Checkout';
 import User from './components/views/User/User';
 import SuccessCheckout from './components/views/Checkout/SuccessCheckout/SuccessCheckout';
 import NotFound from './components/views/NotFound/NotFound';
+import About from './components/views/About/About';
+import Contact from './components/views/Contact/Contact';
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
         <MainLayout>
           <Switch>
             <Route exact path='/' component={Homepage} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/contact' component={Contact} />
             <Route exact path='/shop' component={Shop} />
             <Route exact path='/shop/product/:id' render={(props) => <ProductPage {...props} keyProp={new Date().getTime()} key={new Date().getTime()}/>} />
             <Route exact path='/cart' component={Cart} />

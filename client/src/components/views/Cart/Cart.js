@@ -16,6 +16,7 @@ const Cart = () => {
   const [isCouponVisible, setIsCouponVisible] = useState(false);
   const [coupon, setCoupon] = useState('');
   const [couponDiscount, setCouponDiscount] = useState(0);
+  const [finalPrice, setFinalPrice] = useState(0);
   const dispatch = useDispatch();
   const alert = useContext(AlertContext);
 
@@ -52,21 +53,27 @@ const Cart = () => {
   };
 
   const totalSub = () => {
-    const prices = cartProducts.map(product => product.price * product.cartQuantiy);
-    const total = prices.reduce((a,b)=> a + b);
+    const prices = cartProducts?.map(product => product.price * product.cartQuantiy);
+    const total = prices?.length > 0 && prices?.reduce((a,b)=> a + b);
+    setFinalPrice(parseFloat(total).toFixed(2));
     return total;
   };
 
   const totalPrice = () => {
     const price = totalSub();
     if(couponDiscount === 0) {
-      return price;
+      setFinalPrice(parseFloat(price).toFixed(2));
     } else {
       let discount = price * (couponDiscount/100);
       let pricePromo =  price - discount;
-      return pricePromo;
+      setFinalPrice(parseFloat(pricePromo).toFixed(2));
     }
   };
+
+  useEffect(()=> {
+    totalSub();
+    totalPrice();
+  },[couponDiscount, cartProducts]);
 
   useEffect(()=> {
     setCartProducts(JSON.parse(localStorage.getItem('cart'))?.data || []);
@@ -152,7 +159,7 @@ const Cart = () => {
                 <div className={styles.finalInner}>
                   <div>
                     <p>Sub-Total:</p>
-                    <p>€ {parseFloat(totalSub()).toFixed(2)}</p>
+                    <p>€ {finalPrice}</p>
                   </div>
                   <div>
                     <p>Discount Value:</p>
@@ -160,7 +167,7 @@ const Cart = () => {
                   </div>
                   <div>
                     <p>Total:</p>
-                    <p>€ {parseFloat(totalPrice()).toFixed(2)}</p>
+                    <p>€ {finalPrice}</p>
                   </div>
                 </div>
               </div>
@@ -170,7 +177,7 @@ const Cart = () => {
                 </Link>
                 <Link to={{
                   pathname: '/cart/checkout',
-                  state: cartProducts,
+                  state: {cartProducts, finalPrice},
                 }}
                 >
                   <button>Checkout</button>

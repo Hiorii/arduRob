@@ -107,8 +107,8 @@ const Header = () => {
         </div>
         <div id='list' className={styles.list}>
           <Link to='/shop' className={activeShop ? styles.active : ''}>Shop</Link>
-          <Link to='/' className={activeAbout ? styles.active : ''}>About</Link>
-          <Link to='/' className={activeContact ? styles.active : ''}>Contact</Link>
+          <Link to='/about' className={activeAbout ? styles.active : ''}>About</Link>
+          <Link to='/contact' className={activeContact ? styles.active : ''}>Contact</Link>
         </div>
         <div className={styles.icons}>
           <div className={styles.totalQuantity}>
