@@ -6,12 +6,8 @@ const app = express();
 
 const connectToDB = () => {
     const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.g9pgz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-    const dbURIlocal = `mongodb+srv://${DB_USERNAME_LOCAL}:${DB_PASSWORD_LOCAL}@cluster0.g9pgz.mongodb.net/${DB_NAME_LOCAL}?retryWrites=true&w=majority`;
 
-    mongoose.connect(
-        (process.env.NODE_ENV === 'production') ? dbURI : dbURIlocal,
-        {useNewUrlParser: true, useUnifiedTopology: true}
-    );
+    mongoose.connect(dbURI , {useNewUrlParser: true, useUnifiedTopology: true});
 
     const db = mongoose.connection;
 
