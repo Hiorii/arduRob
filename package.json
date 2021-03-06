@@ -1,0 +1,11 @@
+{
+  "name": "ardurob",
+  "version": "1.0.0",
+  "description": "app",
+  "main": "server.js",
+  "scripts": {
+    "heroku-postbuild": "cd server && yarn build && yarn start"
+  },
+  "author": "Hiorii",
+  "license": "ISC"
+}
