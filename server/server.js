@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const mongoData = require('./envData/mongoDbData');
 const connectToDb = require('./config/db');
 const app = express();
 
