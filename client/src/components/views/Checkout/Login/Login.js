@@ -11,7 +11,7 @@ import {GOOGLE_URL} from '../../../../config';
 const Login = ({handleChange}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log(GOOGLE_URL);
+
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
