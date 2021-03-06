@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {signInWithGoogle} from '../../../../redux/userRedux';
-import {AlertContext} from '../../../../context/alertContext';
 import styles from './Login.module.scss';
 import {GoogleLogin} from 'react-google-login';
 import {AiFillGoogleCircle} from 'react-icons/ai';
+import {GOOGLE_URL} from '../../../../config';
 
 const Login = ({handleChange}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const alert = useContext(AlertContext);
-
+  console.log(GOOGLE_URL);
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
@@ -24,7 +23,6 @@ const Login = ({handleChange}) => {
   };
 
   const googleFailure = () => {
-    alert.successAlert('Google sign in was unsuccessful. Try again later');
     console.log('Google sign in was unsuccessful. Try again later');
   };
 
@@ -39,6 +37,7 @@ const Login = ({handleChange}) => {
             </button>
           )}
           buttonText="Login"
+          redirectUri={GOOGLE_URL}
           onSuccess={googleSuccess}
           onFailure={googleFailure}
           cookiePolicy='single_host_origin'

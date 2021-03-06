@@ -270,10 +270,10 @@
           }
 
           .confirm {
-            @include flex(center, center);
+            @include flex(flex-start, center);
 
             div {
-              @include flex(center, center);
+              @include flex(flex-start, center);
             }
 
             div:first-of-type {
@@ -375,10 +375,10 @@
           }
 
           .confirm {
-            @include flex(center, center);
+            @include flex(flex-start, center);
 
             div {
-              @include flex(center, center);
+              @include flex(flex-start, center);
             }
 
             div:first-of-type {
