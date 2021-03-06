@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "run-p start:* ",
+    "start": "node --max_old_space_size=2560 node_modules/.bin/react-scripts start",
     "start-silent": "run-p start > /dev/null",
     "start:react": "react-scripts start",
     "start-and-test": "run-p start-silent test ",
-    "build": "react-scripts build",
+    "build": "node --max_old_space_size=2560 node_modules/.bin/react-scripts build",
     "test": "react-scripts test --noStackTrace",
     "test-all": "react-scripts test --watchAll=false --noStackTrace",
     "test-related": "react-scripts test --watchAll=false --noStackTrace --findRelatedTests",
