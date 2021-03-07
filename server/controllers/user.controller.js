@@ -15,12 +15,11 @@ exports.getAll = async(req, res) => {
 
 exports.signGoogle = async(req,res) => {
     const {email, givenName, familyName } = req.body;
-
     try {
         const existingUser = await User.findOne({email});
-
         if(!existingUser) {
-            const newUser = new User({
+            console.log('work');
+            const newUser = await User.create({
                 firstName: givenName,
                 lastName: familyName,
                 telephone: ' ',
@@ -31,8 +30,7 @@ exports.signGoogle = async(req,res) => {
                 postCode: ' ',
                 country: ' ',
             });
-            await newUser.save();
-            res.status(200).json({newUser});
+            res.status(200).json({result: newUser});
         } else {
             res.status(200).json({result: existingUser});
         }

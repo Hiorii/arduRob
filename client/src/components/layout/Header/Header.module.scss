@@ -53,9 +53,19 @@
       .ico {
         font-size: 2.3rem;
         color: $main-font;
+        position: relative;
         svg {
           color: $main-font;
           cursor: pointer;
+        }
+        .warning {
+          position: absolute;
+          top: .5rem;
+          left: 1.2rem;
+          svg {
+            color: $color-danger;
+            font-size: 1.5rem;
+          }
         }
       }
       .userActive {
@@ -75,6 +85,7 @@
             border: 1px solid rgba(0,0,0,0.2);
             background: $primary-white;
             box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+            margin-left: 1rem;
             .userCommon {
               width: 100%;
               font-size: 1.3rem;
@@ -102,6 +113,7 @@
             }
             a {
               text-decoration: none;
+              @include flex(flex-start,center);
               svg {
                 color: $second-font;
                 margin-right: 2rem;
@@ -109,6 +121,20 @@
                 transition: $main-transition;
                 &:hover {
                   color: $main-btn;
+                }
+              }
+              .warning {
+                @include flex(center, center);
+                margin-left: .5rem;
+                svg {
+                  color: $color-danger;
+                  font-size: 1.5rem;
+                  margin-right: .2rem;
+                }
+                p {
+                  color: $color-danger;
+                  font-size: .8rem;
+                  margin-left: 0;
                 }
               }
             }
@@ -189,6 +215,15 @@
           color: $second-font;
           cursor: pointer;
         }
+        .warning {
+          position: absolute;
+          top: .5rem;
+          left: 1.2rem;
+          svg {
+            color: $color-danger;
+            font-size: 1.5rem;
+          }
+        }
       }
       .userActive {
         display: none;
@@ -208,6 +243,7 @@
             border: 1px solid rgba(0,0,0,0.2);
             background: $primary-white;
             box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2), -7px 7px 10px rgba(0, 0, 0, 0.2);
+            margin-left: 1rem;
             .userCommon {
               width: 100%;
               font-size: 1.3rem;
@@ -235,6 +271,7 @@
             }
             a {
               text-decoration: none;
+              @include flex(flex-start, center);
               svg {
                 color: $second-font;
                 margin-right: 2rem;
@@ -243,6 +280,20 @@
                 &:hover {
                   color: $main-btn;
                 }
+              }
+            }
+            .warning {
+              @include flex(center, center);
+              margin-left: .5rem;
+              svg {
+                color: $color-danger;
+                font-size: 1.5rem;
+                margin-right: .2rem;
+              }
+              p {
+                color: $color-danger;
+                font-size: .8rem;
+                margin-left: 0;
               }
             }
           }

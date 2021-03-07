@@ -11,6 +11,8 @@ import {sendOrder} from '../../../redux/cartRedux';
 import {UserContext} from '../../../context/userContext';
 import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
 import {AlertContext} from '../../../context/alertContext';
+import {AiFillWarning} from 'react-icons/ai';
+import Button from '../../common/Button/Button';
 
 const initialState = {firstName: '',lastName:'',telephone:'',email:'',password:'',confirmPassword:'', adress:'', city:'',postCode:'', country:'' };
 const guestState = {firstName: '',lastName:'',telephone:'',email:'', adress:'', city:'',postCode:'', country:'' };
@@ -30,6 +32,7 @@ const Checkout = () => {
   const [privacy, setPrivacy] = useState(false);
   const [terms, setTerms] = useState(false);
   const [user, setUser] = useState({});
+  const [isUserFulfilled, setIsUserFulfilled] = useState(true);
   const history = useHistory();
   const cartProducts = JSON.parse(localStorage.getItem('cart'))?.data;
   const currentUser = useContext(UserContext).user;
@@ -164,6 +167,15 @@ const Checkout = () => {
       status: false,
     });
   };
+  useEffect(()=> {
+    if(currentUser && Object.keys(currentUser).length > 0) {
+      if(currentUser.result.adress.length > 1 && currentUser.result.city.length > 1 && currentUser.result.country.length > 1 && currentUser.result.postCode.length > 1 && currentUser.result.telephone.length > 1) {
+        setIsUserFulfilled(true);
+      } else {
+        setIsUserFulfilled(false);
+      }
+    }
+  },[isLogin, currentUser]);
 
   useEffect(()=> {
     setUser(currentUser);
@@ -232,7 +244,22 @@ const Checkout = () => {
             </div>
           }
         </form>
-        <form className={!user ? styles.shipmentDetails : ''}>
+        {!isUserFulfilled &&
+          <div className={styles.userFulfilled}>
+            <div className={styles.warning}>
+              <AiFillWarning />
+              <p>You have missing data to fulfill</p>
+              <AiFillWarning />
+            </div>
+            <p>In order to finalize your shopping you have to update all required data in your user panel:</p>
+            <div className={styles.btnUser}>
+              <button onClick={()=> history.push('/login')}>
+                User panel
+              </button>
+            </div>
+          </div>
+        }
+        <form className={!user || !isUserFulfilled ? styles.shipmentDetails : ''}>
           {!isConfirmed &&
           <>
             <div className={styles.shipment}>

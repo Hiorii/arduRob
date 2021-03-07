@@ -5,7 +5,7 @@ import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../../../context/userContext';
 import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
-import {AiOutlineUser} from 'react-icons/ai';
+import {AiOutlineUser, AiFillWarning} from 'react-icons/ai';
 import {cartTotalQuantity} from '../../../redux/cartRedux';
 import Burger from '../Burger/Burger';
 
@@ -17,6 +17,7 @@ const Header = () => {
   const [activeAbout, setActiveAbout] = useState(false);
   const [activeContact, setActiveContact] = useState(false);
   const [cartTotal, setCartTotal] = useState(0);
+  const [missingData, setMissingData] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const currentUser = useContext(UserContext).user;
   const dispatch = useDispatch();
@@ -57,11 +58,21 @@ const Header = () => {
     } else {
       setCartTotal(0);
     }
+
+    if(currentUser) {
+      if(Object.keys(currentUser).length > 0 && currentUser.result.adress.length > 1 && currentUser.result.city.length > 1 && currentUser.result.country.length > 1 && currentUser.result.postCode.length > 1 && currentUser.result.telephone.length > 1) {
+        setMissingData(false);
+      } else {
+        setMissingData(true);
+      }
+    } else {
+      setMissingData(false);
+    }
     window.addEventListener('scroll', headerStyles);
     return () => {
       window.removeEventListener('scroll', headerStyles);
     };
-  },[cartTotalValue]);
+  },[cartTotalValue, currentUser]);
 
   useEffect(()=> {
     if(history.location.pathname === '/shop') {
@@ -116,6 +127,7 @@ const Header = () => {
           </div>
           <div ref={userIcon} className={styles.ico} onClick={showMenuUser}>
             <BiUserCircle />
+            {missingData && <div className={styles.warning}> <AiFillWarning /> </div>}
           </div>
           <div ref={userPopCont} className={showMenu ? styles.user : styles.userActive}>
             <div className={styles.userData}>
@@ -139,6 +151,12 @@ const Header = () => {
                   </div>
                   <Link to='/login'>
                     <p>Your profile</p>
+                    {missingData &&
+                    <div className={styles.warning}>
+                      <AiFillWarning />
+                      <p>You have missing data to fulfill</p>
+                    </div>
+                    }
                   </Link>
                   <p onClick={()=>userLogout()}>Logout</p>
                 </>
