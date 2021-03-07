@@ -78,7 +78,7 @@ const Checkout = () => {
           setTimeout(()=> {alert.closeAlert();},4000);
         } else {
           await dispatch(signUp(formData, history));
-          isUserFetch?.error && alert.dangerAlert('User with given email already exist');
+          !isUserFetch?.error && alert.dangerAlert('User with given email already exist');
           setTimeout(()=> {alert.closeAlert();},6000);
         }
       }
@@ -92,7 +92,7 @@ const Checkout = () => {
         setTimeout(()=> {alert.closeAlert();},4000);
       } else {
         await dispatch(signIn(formData, history));
-        isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
+        !isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
         setTimeout(()=> {alert.closeAlert();},4000);
       }
     } else if(isGuest) {

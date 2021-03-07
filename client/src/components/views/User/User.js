@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import styles  from './User.module.scss';
 import {Link} from 'react-router-dom';
@@ -17,12 +17,11 @@ const User = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const [formData, setFormData] = useState(initialState);
+  const [isUserFetch] = useState(useSelector(isUserFetched));
   const currentUser = useContext(UserContext).user;
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
   const alert = useContext(AlertContext);
-  const isUserFetch = useSelector(isUserFetched);
 
   const activeLogin = () => {
     setIsLogin(true);
@@ -58,7 +57,7 @@ const User = () => {
           setTimeout(()=> {alert.closeAlert();},4000);
         } else {
           await dispatch(signUp(formData, history));
-          isUserFetch?.error && alert.dangerAlert('User with given email already exist');
+          !isUserFetch?.error && alert.dangerAlert('User with given email already exist');
           setTimeout(()=> {alert.closeAlert();},4000);
         }
       }
@@ -71,8 +70,8 @@ const User = () => {
         setTimeout(()=> {alert.closeAlert();},2000);
       } else {
         await dispatch(signIn(formData, history));
-        isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
-        setTimeout(()=> {alert.closeAlert();},3000);
+        !isUserFetch?.error && alert.dangerAlert('Incorrect E-mail or Password');
+        setTimeout(()=> {alert.closeAlert();},4000);
       }
     }
   };
