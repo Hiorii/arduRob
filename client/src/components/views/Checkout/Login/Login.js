@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {signInWithGoogle} from '../../../../redux/userRedux';
+import PropTypes from 'prop-types';
 import styles from './Login.module.scss';
-import {GoogleLogin} from 'react-google-login';
 import {AiFillGoogleCircle} from 'react-icons/ai';
+import {GoogleLogin} from 'react-google-login';
 import {GOOGLE_URL} from '../../../../config';
 
 const Login = ({handleChange}) => {

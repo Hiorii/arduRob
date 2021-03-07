@@ -24,7 +24,6 @@ export const handleClear = payload => ({ payload, type: HANDLE_CLEAR_ITEM });
 export const sendOrder = (order) => {
   return async() => {
     try {
-      console.log(order);
       await axios.post(`${API_URL}/cart`, order);
     } catch (err) {
       console.log(err);

@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './MainLayout.module.scss';
+import {fetchProducts} from '../../../redux/productRedux';
+import {fetchCategory} from '../../../redux/categoryRedux';
 import Header from '../Header/Header';
 import Alerts from '../../features/Alert/Alert';
-import {fetchProducts, getAllProducts} from '../../../redux/productRedux';
-import {fetchCategory} from '../../../redux/categoryRedux';
-import {useDispatch} from 'react-redux';
 import Popup from '../../features/Popup/Popup';
 
 const MainLayout = ({children}) => {
   const location = useLocation();
   const dataProduct = JSON.parse(localStorage.getItem('products'));
-
   const dispatch = useDispatch();
 
   useEffect(()=> {
@@ -34,9 +33,6 @@ const MainLayout = ({children}) => {
       <div className={styles.child}>
         {children}
       </div>
-      {/*<div className={styles.footer}>*/}
-      {/*  <Footer />*/}
-      {/*</div>*/}
     </div>
   );
 };

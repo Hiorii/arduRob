@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
-import styles from './ProductBox.module.scss';
-import PropTypes from 'prop-types';
-import {FaCartPlus} from 'react-icons/fa';
-import {addToCart} from '../../../../redux/productRedux';
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {PopupContext} from '../../../../context/popupContext';
+import {addToCart} from '../../../../redux/productRedux';
+import PropTypes from 'prop-types';
+import styles from './ProductBox.module.scss';
+import {FaCartPlus} from 'react-icons/fa';
 
 const ProductBox = ({product}) => {
   const dispatch = useDispatch();

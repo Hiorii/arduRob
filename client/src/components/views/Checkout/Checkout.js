@@ -1,24 +1,30 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import styles  from './Checkout.module.scss';
 import {Link, useHistory} from 'react-router-dom';
+import {UserContext} from '../../../context/userContext';
+import {AlertContext} from '../../../context/alertContext';
+import {sendOrder} from '../../../redux/cartRedux';
+import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
+import styles  from './Checkout.module.scss';
+import {AiFillWarning} from 'react-icons/ai';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import Guest from './Guest/Guest';
 import ConfirmCheckout from './ConfirmCheckout/ConfirmCheckout';
-import {sendOrder} from '../../../redux/cartRedux';
-import {UserContext} from '../../../context/userContext';
-import {signUp, signIn, isUserFetched} from '../../../redux/userRedux';
-import {AlertContext} from '../../../context/alertContext';
-import {AiFillWarning} from 'react-icons/ai';
-import Button from '../../common/Button/Button';
 
 const initialState = {firstName: '',lastName:'',telephone:'',email:'',password:'',confirmPassword:'', adress:'', city:'',postCode:'', country:'' };
 const guestState = {firstName: '',lastName:'',telephone:'',email:'', adress:'', city:'',postCode:'', country:'' };
 
 const Checkout = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const cartProducts = JSON.parse(localStorage.getItem('cart'))?.data;
+  const currentUser = useContext(UserContext).user;
+  const alert = useContext(AlertContext);
+  const isUserFetch = useSelector(isUserFetched);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const finalSum = history.location.state?.finalPrice;
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const [isGuest, setIsGuest] = useState(false);
@@ -33,13 +39,6 @@ const Checkout = () => {
   const [terms, setTerms] = useState(false);
   const [user, setUser] = useState({});
   const [isUserFulfilled, setIsUserFulfilled] = useState(true);
-  const history = useHistory();
-  const cartProducts = JSON.parse(localStorage.getItem('cart'))?.data;
-  const currentUser = useContext(UserContext).user;
-  const alert = useContext(AlertContext);
-  const isUserFetch = useSelector(isUserFetched);
-  const [isConfirmed, setIsConfirmed] = useState(false);
-  const finalSum = history.location.state?.finalPrice;
 
   const activeLogin = () => {
     setIsLogin(true);
@@ -89,7 +88,6 @@ const Checkout = () => {
       if(formData.email === '') {
         alert.dangerAlert('E-mail field can not be empty');
         setTimeout(()=> {alert.closeAlert();},4000);
-
       } else if(formData.password === '') {
         alert.dangerAlert('Password field can not be empty');
         setTimeout(()=> {alert.closeAlert();},4000);
@@ -167,6 +165,7 @@ const Checkout = () => {
       status: false,
     });
   };
+
   useEffect(()=> {
     if(currentUser && Object.keys(currentUser).length > 0) {
       if(currentUser.result.adress.length > 1 && currentUser.result.city.length > 1 && currentUser.result.country.length > 1 && currentUser.result.postCode.length > 1 && currentUser.result.telephone.length > 1) {

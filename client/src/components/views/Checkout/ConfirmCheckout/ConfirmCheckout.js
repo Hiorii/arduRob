@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
+import {UserContext} from '../../../../context/userContext';
 import PropTypes from 'prop-types';
 import styles from './ConfirmCheckout.module.scss';
-import {UserContext} from '../../../../context/userContext';
 
 const ConfirmCheckout = ({payment, shipping, finalSum}) => {
   const products = JSON.parse(localStorage.getItem('cart')).data;

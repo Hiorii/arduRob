@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './ProductList.module.scss';
 import Filters from '../Filters/Filters';
 import ProductBox from '../ProductBox/ProductBox';
-import {Link} from 'react-router-dom';
 
 const ProductList = ({products, categories, subCategories}) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -64,15 +64,6 @@ const ProductList = ({products, categories, subCategories}) => {
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
-
-  // let pageIncrementBtn = null;
-  // if (pageNumbers.length > maxPageNumberLimit) {
-  //   pageIncrementBtn = <li onClick={handleNextBtn}>...</li>;
-  // }
-  // let pageDecrementBtn = null;
-  // if (pageNumbers.length > maxPageNumberLimit) {
-  //   pageDecrementBtn = <li onClick={handlePrevBtn}>...</li>;
-  // }
 
   useEffect(()=> {
     if(byCategory.length > 0) {

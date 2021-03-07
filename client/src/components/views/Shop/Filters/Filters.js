@@ -13,11 +13,11 @@ const Filters = ({categories, products, subCategories, setByCategory, setCurrent
     if (subCategoryName === 'all') {
       setFilteredCategoryProducts(allProducts);
     } else {
-      console.log(subCategoryName);
       const filteredAllProducts = allProducts.filter(product => product?.subCategoryId?.name === subCategoryName);
       setFilteredCategoryProducts(filteredAllProducts);
     }
   };
+
   const sortProducts = e => {
     if (e.currentTarget.value === 'Name - A-Z') {
       filteredCategoryProducts.sort((a, b) => a.name.localeCompare(b.name));
@@ -34,7 +34,6 @@ const Filters = ({categories, products, subCategories, setByCategory, setCurrent
   };
 
   useEffect(()=> {
-
     setByCategory(filteredCategoryProducts);
     setCurrentPage(1);
     setProductInitializer(!productInitializer);

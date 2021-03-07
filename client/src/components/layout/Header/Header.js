@@ -1,17 +1,22 @@
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {logoutUser} from '../../../redux/userRedux';
-import {Link, useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../../../context/userContext';
+import {Link, useHistory, useLocation} from 'react-router-dom';
+import {logoutUser} from '../../../redux/userRedux';
+import {cartTotalQuantity} from '../../../redux/cartRedux';
 import styles from './Header.module.scss';
 import {BiUserCircle, BiCartAlt} from 'react-icons/bi';
 import {AiOutlineUser, AiFillWarning} from 'react-icons/ai';
-import {cartTotalQuantity} from '../../../redux/cartRedux';
 import Burger from '../Burger/Burger';
 
 const Header = () => {
   const history = useHistory();
   const location = useLocation();
+  const currentUser = useContext(UserContext).user;
+  const dispatch = useDispatch();
+  const cartTotalValue = useSelector(cartTotalQuantity);
+  const userPopCont = useRef(null);
+  const userIcon = useRef(null);
   const [scrollPos, setScrollPos] = useState(0);
   const [activeShop, setActiveShop] = useState(false);
   const [activeAbout, setActiveAbout] = useState(false);
@@ -19,11 +24,6 @@ const Header = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [missingData, setMissingData] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
-  const currentUser = useContext(UserContext).user;
-  const dispatch = useDispatch();
-  const cartTotalValue = useSelector(cartTotalQuantity);
-  const userPopCont = useRef(null);
-  const userIcon = useRef(null);
 
   const headerStyles = () => {
     setScrollPos(window.scrollY);
@@ -45,6 +45,7 @@ const Header = () => {
       }
     }
   };
+
   const handlePressEsc = e => {
     if (e.keyCode === 27) {
       setShowMenu(!showMenu);
@@ -52,7 +53,7 @@ const Header = () => {
   };
 
   useEffect(()=> {
-    if(cartTotalValue?.length>0) {
+    if(cartTotalValue?.length > 0) {
       const total = cartTotalValue.reduce((a,b)=> a + b);
       setCartTotal(total);
     } else {

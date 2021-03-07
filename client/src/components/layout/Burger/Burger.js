@@ -2,7 +2,7 @@ import React from 'react';
 import { stack as Menu } from 'react-burger-menu';
 import './Burder.scss';
 
-const Burger = props => {
+const Burger = () => {
   return (
     <Menu right className={'menuBar'} width={ '100%' }>
       <div className={'logo'}>
@@ -13,8 +13,8 @@ const Burger = props => {
       <div id='list' className='list'>
         <a href='/'>Home</a>
         <a href='/shop'>Shop</a>
-        <a href='/'>About</a>
-        <a href='/'>Contact</a>
+        <a href='/about'>About</a>
+        <a href='/contact'>Contact</a>
       </div>
     </Menu>
   );

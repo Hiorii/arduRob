@@ -7,6 +7,7 @@ import Feedback from './Feedback/Feedback';
 
 const ProductPage = () => {
   const products = JSON.parse(localStorage.getItem('products'));
+
   return (
     <div className={styles.root}>
       <div className={styles.productMain}>

@@ -2,7 +2,6 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import styles from './Feedback.module.scss';
-import {BsChatQuote} from 'react-icons/bs';
 
 const Feedback = () => {
   const feedbackUser = useSelector(state => state.feedback);

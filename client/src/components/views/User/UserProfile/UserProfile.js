@@ -24,12 +24,6 @@ const UserProfile = ({user}) => {
     token: user.token,
   });
 
-  const userLogout = () => {
-    dispatch(logoutUser());
-    history.push('/');
-    window.location.reload();
-  };
-
   const changeData = (e) => {
     e.preventDefault();
     popup.closePopup();
@@ -67,7 +61,6 @@ const UserProfile = ({user}) => {
   },[editedValue]);
 
   useDidMountEffect(() => {
-    console.log('work');
     sendData();
   }, [initializer]);
 

@@ -1,14 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import styles from './Cart.module.scss';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {handleAddQuantity, handleMinusQuantity, handleClear} from '../../../redux/cartRedux';
+import {AlertContext} from '../../../context/alertContext';
+import styles from './Cart.module.scss';
 import {MdKeyboardArrowRight} from 'react-icons/md/index';
 import {BiMinus, BiCartAlt} from 'react-icons/bi/index';
 import {BsPlus, BsArrowRightShort} from 'react-icons/bs';
 import Button from '../../common/Button/Button';
-import {handleAddQuantity, handleMinusQuantity, handleClear} from '../../../redux/cartRedux';
-import {getAllProducts} from '../../../redux/productRedux';
-import {AlertContext} from '../../../context/alertContext';
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState();
