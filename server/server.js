@@ -3,7 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const connectToDb = require('./config/db');
 const app = express();
-const mongodb = require('./envData/mongoDbData');
 
 const corsOption = {
     origin: '*',
